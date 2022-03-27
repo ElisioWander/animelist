@@ -1,0 +1,41 @@
+.homeContainer {
+    width: 100%;
+    height: calc(100vh - 5rem);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: linear-gradient(to top, #000, transparent 90%), url("https://s1.1zoom.me/big0/877/Umbrella_Dress_Clouds_Legs_Stilettos_599362_1280x767.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.hero {
+    width: 480px;
+    
+    padding: 2rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    h1 {
+        margin: 4rem 0 1rem 0;
+
+        span {
+            color: var(--cyan);
+        }
+    }
+
+    p {
+        font-size: 1.3rem;
+        font-weight: bold;
+
+        color: var(--white);
+
+        margin-bottom: 1.5rem;
+    }
+}
