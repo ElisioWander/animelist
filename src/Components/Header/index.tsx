@@ -1,11 +1,14 @@
-import { FcGoogle } from 'react-icons/fc'
-import { FiX } from 'react-icons/fi'
+import { useSession } from 'next-auth/react'
+import Link from 'next/link'
+
 import { Logo } from '../Logo/index'
 import { SignInButton } from '../SignInButton'
+
+
 import styles from './styles.module.scss'
 
 export function Header() {
-    const isUserLoggedIn = true
+    const { data: session } = useSession()
 
     return (
         <header className={styles.headerContainer} >
@@ -13,11 +16,15 @@ export function Header() {
                 <Logo />
 
                 <nav>
-                    <a href="#" className={styles.active} >Home</a>
-                    <a href="#">Animes</a>
+                    <Link href="/">
+                        <a className={styles.active} >Home</a>
+                    </Link>
+                    <Link href="/animes" >
+                        <a >Animes</a>
+                    </Link>
                 </nav>
 
-                { isUserLoggedIn && <SignInButton /> }
+                { session && <SignInButton /> }
                 
             </div>
         </header>
