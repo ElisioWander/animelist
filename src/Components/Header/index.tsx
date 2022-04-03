@@ -8,8 +8,6 @@ import { SignInButton } from '../SignInButton'
 import styles from './styles.module.scss'
 
 export function Header() {
-    const { data: session } = useSession()
-
     return (
         <header className={styles.headerContainer} >
             <div className={styles.headerContent} >
@@ -24,7 +22,7 @@ export function Header() {
                     </Link>
                 </nav>
 
-                { session && <SignInButton /> }
+                <SignInButton />
                 
             </div>
         </header>

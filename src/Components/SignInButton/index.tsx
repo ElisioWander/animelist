@@ -16,7 +16,7 @@ export function SignInButton() {
     >
       <FaGoogle color="#13C4A3" />
       Elisio Wander
-      <FiX color="#000000" className={styles.closeIcon} />
+      <FiX color="#737380" className={styles.closeIcon} />
     </button>
   ) : (
     <button
