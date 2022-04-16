@@ -6,14 +6,11 @@
     align-items: center;
     justify-content: start;
 
-    padding: 2rem;
-
-    background: linear-gradient(to top, #000, transparent 100%), url("https://s1.1zoom.me/big0/877/Umbrella_Dress_Clouds_Legs_Stilettos_599362_1280x767.jpg");
-    background-position: center;
+    background: linear-gradient(to top, #000, transparent 100%), url("https://wallpapers.com/images/high/violet-evergarden-sincerely-true-qt4yyp06lv1bjayi.jpg");
+    background-position: left;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: auto;
 }
-
 .hero {
     width: 720px;
     
@@ -36,8 +33,13 @@
     }
 
     h1 {
-        font-size: 3rem;
+        font-size: 2.2rem;
+        font-family: "Manrope", sans-serif;
+        font-weight: bold;
+
         margin: 4rem 0 1rem 0;
+
+        line-height: 2.8rem;
 
         span {
             color: var(--cyan);
@@ -45,7 +47,8 @@
     }
 
     p {
-        font-size: 1.3rem;
+        font-size: 1.1rem;
+        font-family: "Manrope", sans-serif;
         font-weight: 500;
 
         margin-bottom: 2rem;
@@ -55,9 +58,10 @@
         width: 240px;
         
         text-align: center;
+        align-self: center;
 
         padding: 1rem;
-        margin-left: 1rem;
+        margin-bottom: 1rem;
 
         border-radius: 100px;
 
@@ -73,6 +77,12 @@
         &:hover {
             filter: brightness(0.8);
         }
+    }
+
+    button {
+        width: 240px;
+
+        align-self: center;
     }
 
 }

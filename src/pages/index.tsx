@@ -1,5 +1,6 @@
 import { useSession } from 'next-auth/react'
 import Link from 'next/link'
+import { SignInButton } from '../Components/SignInButton'
 import styles from './home.module.scss'
 
 export default function Home() {
@@ -17,13 +18,14 @@ export default function Home() {
         </h1>
 
         <p>
-          Tem dúvidas sobre quais animes assistir? <br />
-          Aqui tem algumas sugestões para você
+          Aqui tem algumas sugestões para você ⬇️
         </p>
 
         <Link href="/animes" >
           <a>Ir para a lista</a>
         </Link>
+
+        <SignInButton />
       </main>
     </div>
   )

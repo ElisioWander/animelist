@@ -1,30 +1,24 @@
-import { useSession } from 'next-auth/react'
-import Link from 'next/link'
+import Link from "next/link";
+import { ActiveLink } from "../ActiveLink";
+import { Logo } from "../Logo/index";
 
-import { Logo } from '../Logo/index'
-import { SignInButton } from '../SignInButton'
-
-
-import styles from './styles.module.scss'
+import styles from "./styles.module.scss";
 
 export function Header() {
-    return (
-        <header className={styles.headerContainer} >
-            <div className={styles.headerContent} >
-                <Logo />
+  return (
+    <header className={styles.headerContainer}>
+      <div className={styles.headerContent}>
+        <Logo />
 
-                <nav>
-                    <Link href="/">
-                        <a className={styles.active} >Home</a>
-                    </Link>
-                    <Link href="/animes" >
-                        <a >Animes</a>
-                    </Link>
-                </nav>
-
-                <SignInButton />
-                
-            </div>
-        </header>
-    )
+        <nav>
+          <ActiveLink activeClass={styles.active} href="/">
+            <a>Home</a>
+          </ActiveLink>
+          <ActiveLink  activeClass={styles.active} href="/animes">
+            <a>Animes</a>
+          </ActiveLink>
+        </nav>
+      </div>
+    </header>
+  );
 }
