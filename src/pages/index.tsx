@@ -21,7 +21,7 @@ export default function Home() {
           Aqui tem algumas sugestões para você ⬇️
         </p>
 
-        <Link href="/animes" >
+        <Link href="/posts" >
           <a>Ir para a lista</a>
         </Link>
 

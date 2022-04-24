@@ -16,6 +16,10 @@
     align-items: center;
     justify-content: space-between;
 
+    button {
+        display: none;
+    }
+
     nav {
         height: 5rem;
 
@@ -77,14 +81,26 @@
 
                 background-color: var(--gray-900);
             }
-
-            &+ a {
-                margin-left: 1rem;
-            }
         }
     }
 
     button {
         margin-left: auto;
+    }
+}
+
+@media(min-width: 425px) {
+    .headerContent {
+        & a + a {
+            margin-left: 1rem;
+        }
+    }
+}
+
+@media(min-width: 768px) {
+    .headerContent {
+        button {
+            display: flex;
+        }
     }
 }
