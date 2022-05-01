@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { ActiveLink } from "../ActiveLink";
 import { Logo } from "../Logo/index";
+import { MenuSection } from "../Menu/MenuSection";
 import { SignInButton } from "../SignInButton";
 
 import styles from "./styles.module.scss";
@@ -15,11 +15,12 @@ export function Header() {
           <ActiveLink activeClass={styles.active} href="/">
             <a>Home</a>
           </ActiveLink>
-          <ActiveLink  activeClass={styles.active} href="/posts">
+          <ActiveLink activeClass={styles.active} href="/posts">
             <a>Animes</a>
           </ActiveLink>
         </nav>
 
+        <MenuSection />
         <SignInButton />
       </div>
     </header>

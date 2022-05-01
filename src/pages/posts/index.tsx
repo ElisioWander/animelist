@@ -14,7 +14,7 @@ export default function Posts() {
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Id ex ipsam deserunt ad consequuntur voluptas sed at eos numquam vel, modi incidunt minus aliquid, fugiat doloremque ipsum dolores, repellat vitae?
           </p>
 
-          <a href="/post">Ver mais</a>
+          <a href="/posts/post">Ver mais</a>
         </div>
       </div>
       <div className={styles.postCard}>

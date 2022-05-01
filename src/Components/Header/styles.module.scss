@@ -1,106 +1,48 @@
 .headerContainer {
-    width: 100%;
-    height: calc(5rem + 1px);
+  width: 100%;
+  height: calc(5rem + 1px);
 
-    border-bottom: solid 1px var(--cyan);
+  border-bottom: solid 1px var(--cyan);
 }
 
 .headerContent {
-    max-width: 1120px;
-    height: 5rem;
+  max-width: 1120px;
+  height: 5rem;
 
-    margin: 0 auto;
-    padding: 0 1.4rem;
+  margin: 0 auto;
+  padding: 0 1.4rem;
 
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-    button {
-        display: none;
+  nav {
+    display: none;
+  }
+
+  button {
+    display: none;
+    margin-left: auto;
+  }
+}
+
+@media (min-width: 425px) {
+  .headerContent {
+
+    & a + a {
+      margin-left: 1rem;
     }
+  }
+}
 
+@media (min-width: 768px) {
+  .headerContent {
     nav {
-        height: 5rem;
-
-        a {
-            width: 68px;
-
-            display: inline-block;
-
-            padding: 0 0.5rem;
-
-            text-align: center;
-            font-size: 0.9rem;
-            line-height: 5rem;
-
-            color: var(--gray-300);
-
-            position: relative;
-
-            transition: 0.2s;
-
-            &:hover {
-                color: var(--white);
-            }
-
-            &.active {
-                height: 5rem;
-
-                font-weight: bold;
-
-                color: var(--white);
-
-                background-color: var(--gray-800);
-            }
-
-            &.active::after {
-                content: "";
-
-                width: 6px;
-                height: 100%;
-
-                position: absolute;
-                left: -1px;
-
-                border-radius: 0px 100px 100px 0;
-
-                background-color: var(--gray-900);
-            }
-
-            &.active::before {
-                content: "";
-
-                width: 6px;
-                height: 100%;
-
-                border-radius: 100px 0px 0px 100px;
-
-                position: absolute;
-                right: -1px;
-
-                background-color: var(--gray-900);
-            }
-        }
+      display: flex;
     }
 
     button {
-        margin-left: auto;
+      display: flex;
     }
-}
-
-@media(min-width: 425px) {
-    .headerContent {
-        & a + a {
-            margin-left: 1rem;
-        }
-    }
-}
-
-@media(min-width: 768px) {
-    .headerContent {
-        button {
-            display: flex;
-        }
-    }
+  }
 }
