@@ -24,32 +24,43 @@
 
   .cardImage {
     width: 100%;
-    height: 280px;
+    height: 380px;
 
-    border-top-left-radius: 0.5rem;
-    border-top-right-radius: 0.5rem;
+    img {
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+
+      border-top-left-radius: 0.5rem;
+      border-top-right-radius: 0.5rem;
+    }
+
     text-align: center;
 
-    background-image: url("https://i.pinimg.com/564x/99/0f/a7/990fa77056cf93a505faa022826d2bd7.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+
+  }
+
+  .hero {
+    padding: 0 1.5rem;
   }
 
   h1 {
-    font-size: 2rem;
+    font-size: 2.5rem;
     font-family: 'Manrope', sans-serif;
 
     margin-top: 0.6rem;
 
-    color: var(--cyan);
+    color: var(--gray-300);
   }
 
   p {
     margin: 1rem 0 2rem 0;
 
-    font-size: 1rem;
-    letter-spacing: 0.1rem;
-    line-height: 1.3rem;
+    font-size: 1.1rem;
+    letter-spacing: 1.1px;
+    line-height: 16px;
 
     text-align: left;
 
@@ -57,7 +68,7 @@
   }
 
   a {
-    width: 220px;
+    width: 180px;
     display: block;
     
     font-weight: bold;
@@ -70,7 +81,7 @@
     margin: 0 auto;
     padding: 0.5rem 1rem;
 
-    color: var(--black);
+    color: var(--white);
     background-color: var(--cyan);
 
     transition: filter 0.2s;
@@ -88,6 +99,10 @@
     .cardImage {
       height: 480px;
     }
+
+    p {
+      padding: 1.5rem 0;
+    }
   }
 }
 
@@ -101,14 +116,22 @@
 
   .postCard {
     width: 100%;
-    height: 420px;
+    height: 440px;
 
     .cardImage {
       height: 100px;
     }
 
-    p {
-      font-size: 0.8rem;
+    .hero {
+      h1 {
+        font-size: 2rem;
+      }
+  
+      p {
+        font-size: 0.8rem;
+  
+        padding: 0;
+      }
     }
   }
 }

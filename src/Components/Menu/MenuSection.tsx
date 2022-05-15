@@ -15,7 +15,7 @@ export function MenuSection() {
   function handleOpenMenuToggle() {
     const isActive = !activeMenu
 
-    document.body.style.overflow = !activeMenu ? "hidden" : "initial"
+    document.body.style.overflow = isActive == true ? "hidden" : "initial"
 
     setActiveMenu(isActive)
   }
