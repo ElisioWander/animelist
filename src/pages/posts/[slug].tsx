@@ -1,8 +1,10 @@
 import { GetServerSideProps } from 'next'
-import Link from 'next/link'
 import { prismicClient } from '../../services/prismic'
 
-import styles from './post.module.scss'
+import Link from 'next/link'
+import * as prismicH from '@prismicio/helpers'
+
+import styles from './post.module.scss' 
 
 export default function Post() {
   return (
@@ -48,7 +50,20 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
 
   const response = await prismicClient.getByUID("post", String(slug))
 
+  const post = {
+    slug,
+    banner: response.data.banner.url,
+    title: prismicH.asText(response.data.title),
+    sinopse: prismicH.asText(response.data.sinopse),
+    staff: {
+      director: prismicH.asText(response.data.director),
+      design: prismicH.asText(response.data.design),
+      studio: prismicH.asText(response.data.studio)
+    },
+    content: prismicH.asText(response.data.content)
+  }
+
   return {
-    props: {}
+    props: { post }
   }
 }
