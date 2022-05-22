@@ -1,4 +1,6 @@
+import { GetServerSideProps } from 'next'
 import Link from 'next/link'
+import { prismicClient } from '../../services/prismic'
 
 import styles from './post.module.scss'
 
@@ -39,4 +41,14 @@ export default function Post() {
       </Link>
     </div>
   )
+}
+
+export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+  const { slug } = params
+
+  const response = await prismicClient.getByUID("post", String(slug))
+
+  return {
+    props: {}
+  }
 }
