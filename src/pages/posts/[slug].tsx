@@ -6,7 +6,24 @@ import * as prismicH from '@prismicio/helpers'
 
 import styles from './post.module.scss' 
 
-export default function Post() {
+type Post = {
+  slug: string;
+  banner: string;
+  title: string;
+  sinopse: string;
+  staff: {
+    director: string;
+    design: string;
+    studio: string
+  };
+  content: string;
+}
+
+interface PostProps {
+  post: Post
+}
+
+export default function Post({ post }: PostProps) {
   return (
     <div className={styles.postContainer} >
       <img 
