@@ -14,7 +14,7 @@ export default function Home() {
         ) }
 
         <h1>
-          Conheça os <span>melhores animes</span> de todos os tempos
+          Noticias atualizadas sobre o <span>universo dos animes</span>
         </h1>
 
         <p>
@@ -22,7 +22,7 @@ export default function Home() {
         </p>
 
         <Link href="/posts" >
-          <a>Ir para a lista</a>
+          <a>News</a>
         </Link>
 
         <SignInButton />

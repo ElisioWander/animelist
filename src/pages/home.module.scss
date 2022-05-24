@@ -6,8 +6,8 @@
     align-items: center;
     justify-content: flex-start;
 
-    background: linear-gradient(to top, #000, transparent 100%), url("https://wallpapers.com/images/high/violet-evergarden-sincerely-true-qt4yyp06lv1bjayi.jpg");
-    background-position: left;
+    background: linear-gradient(to right, #000, transparent 100%), url("https://i.pinimg.com/564x/76/ee/e9/76eee9ba6452a1193de810fc0e85f305.jpg");
+    background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -89,10 +89,16 @@
 
 @media(min-width: 375px) {
     .hero {
-        text-align: center;
-
         h1 {
             font-size: 2.3rem;
+        }
+    }
+}
+
+@media(min-width: 490px) {
+    .hero {
+        h1, p {
+            text-align: center;
         }
     }
 }

@@ -17,6 +17,7 @@ type Post = {
     studio: string
   };
   content: string;
+  video: string;
 }
 
 interface PostProps {
@@ -56,6 +57,15 @@ export default function Post({ post }: PostProps) {
         <div className={styles.content} >
           <h3>Mais sobre</h3>
           <p>{post.content}</p>
+
+          {post.video && (
+            <div>
+              <iframe
+                src={post.video}
+                frameBorder="0"
+              />
+            </div>
+          )}
         </div>
       </main>
 
@@ -81,7 +91,8 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
       design: prismicH.asText(response.data.design),
       studio: prismicH.asText(response.data.studio)
     },
-    content: prismicH.asText(response.data.content)
+    content: prismicH.asText(response.data.content),
+    video: response.data?.video.url || null
   }
 
   return {

@@ -56,7 +56,7 @@ export const getStaticProps: GetStaticProps = async () => {
       slug: post.uid,
       banner: post.data.banner.url,
       title: prismicH.asText(post.data.title),
-      summary: post.data.sinopse.find((sinopse) => sinopse.type === 'paragraph')?.text ?? ""
+      summary: post.data.sinopse.find((sinopse) => sinopse.type === 'paragraph')?.text ?? "",
     }
   })
 
