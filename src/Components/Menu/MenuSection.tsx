@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react"
 import { ActiveLink } from "../ActiveLink";
+import { SignInButton } from "../SignInButton";
 
 import styles from './styles.module.scss'
 
@@ -28,6 +29,9 @@ export function MenuSection() {
       </div>
       <nav className={`${styles.menuNav} ${styles.on}`} >
         <ul>
+          <li>
+            <SignInButton />
+          </li>
           <li>
             <ActiveLink activeClass={styles.active} href="/">
               <a>Home</a>

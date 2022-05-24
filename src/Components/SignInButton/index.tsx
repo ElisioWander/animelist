@@ -1,4 +1,4 @@
-import { FaGoogle } from "react-icons/fa";
+import { FaSignInAlt } from "react-icons/fa";
 import { FiX } from "react-icons/fi";
 import { useSession, signIn, signOut } from "next-auth/react";
 
@@ -14,7 +14,7 @@ export function SignInButton() {
       className={styles.signInButton}
       onClick={() => signOut()}
     >
-      <FaGoogle color="#13C4A3" />
+      <FaSignInAlt color="#13C4A3" />
       Elisio Wander
       <FiX color="#737380" className={styles.closeIcon} />
     </button>
@@ -24,8 +24,8 @@ export function SignInButton() {
       className={styles.signInButton}
       onClick={() => signIn('google')}
     >
-      <FaGoogle color="#EBA417" />
-      Sign In with Google
+      <FaSignInAlt color="#EBA417" />
+      Sign In
     </button>
   );
 }

@@ -85,6 +85,22 @@
 
     ul {
       width: 100%;
+
+      li:first-child {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        button {
+          display: flex;
+          margin: 0;
+        }
+
+        &:hover {
+          background-color: transparent;
+        }
+      }
+
       li {
         padding: 1rem 0;
 
