@@ -25,7 +25,9 @@ export default function Home() {
           <a>News</a>
         </Link>
 
-        <SignInButton />
+        {!session && (
+          <SignInButton />
+        )}
       </main>
     </div>
   )

@@ -5,6 +5,7 @@ import Link from 'next/link'
 import * as prismicH from '@prismicio/helpers'
 
 import styles from './post.module.scss' 
+import { getSession } from 'next-auth/react'
 
 type Post = {
   slug: string;
@@ -76,7 +77,9 @@ export default function Post({ post }: PostProps) {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+export const getServerSideProps: GetServerSideProps = async ({ params, req }) => {
+  const session = await getSession({req})
+
   const { slug } = params
 
   const response = await prismicClient.getByUID("post", String(slug))
@@ -93,6 +96,16 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
     },
     content: prismicH.asText(response.data.content),
     video: response.data?.video.url || null
+  }
+
+  //redirecionar para a página de fazer login caso a pessoa não esteja logada
+  if(!session) {
+    return {
+      redirect: {
+        destination: `/`,
+        permanent: false
+      }
+    }
   }
 
   return {

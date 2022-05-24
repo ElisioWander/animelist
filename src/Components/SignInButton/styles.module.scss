@@ -37,3 +37,21 @@
 
     transition: filter 0.2s;
 }
+
+.signOutButton {
+    width: 32px;
+    height: 32px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-left: 2rem;
+
+    border: none;
+    background-color: transparent;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
