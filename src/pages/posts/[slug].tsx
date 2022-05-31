@@ -102,7 +102,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params, req }) =>
   if(!session) {
     return {
       redirect: {
-        destination: `/`,
+        destination: `/posts`,
         permanent: false
       }
     }
