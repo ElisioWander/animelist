@@ -2,6 +2,7 @@ import { GetStaticProps } from "next";
 import { prismicClient } from "../../services/prismic";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
+import { SignInButton } from "../../Components/SignInButton";
 
 import * as prismicH from '@prismicio/helpers'
 import Link from "next/link";
@@ -9,7 +10,6 @@ import Modal from 'react-modal'
 
 import styles from "./posts.module.scss";
 import modalStyles from "../../styles/modal-styles.module.scss"
-import { SignInButton } from "../../Components/SignInButton";
 
 type Post = {
   slug: string;
@@ -67,20 +67,24 @@ export default function Posts({ posts }: PostsProps) {
         isOpen={modalIsOpen}
         onRequestClose={() => setModalIsOpen(false)}
         overlayClassName={modalStyles.reactModalOverlay}
+        className={modalStyles.reactModalContent}
       >
 
-        <div>
-          <div>
-            <span>Sign In</span>
+        <div className={modalStyles.signInContent} >
+          <span>Faça login para acessar o conteúdo</span>
+          <div className={modalStyles.traditionalSignInContent} >
             <label htmlFor="email">E-mail</label>
             <input type="email" />
             <label htmlFor="password">Password</label>
             <input type="password" />
+
+            <button type="submit" >Entrar</button>
           </div>
 
           <span>Ou</span>
 
-          <div>
+          <div className={modalStyles.socialSignInContent} >
+            <label>Sign In With Google</label>
             <SignInButton />
           </div>
         </div>

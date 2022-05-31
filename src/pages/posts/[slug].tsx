@@ -1,11 +1,11 @@
 import { GetServerSideProps } from 'next'
 import { prismicClient } from '../../services/prismic'
+import { getSession } from 'next-auth/react'
 
 import Link from 'next/link'
 import * as prismicH from '@prismicio/helpers'
 
 import styles from './post.module.scss' 
-import { getSession } from 'next-auth/react'
 
 type Post = {
   slug: string;
@@ -102,7 +102,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params, req }) =>
   if(!session) {
     return {
       redirect: {
-        destination: `/posts`,
+        destination: '/posts',
         permanent: false
       }
     }
