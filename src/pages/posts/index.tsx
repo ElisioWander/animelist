@@ -6,10 +6,9 @@ import { SignInButton } from "../../Components/SignInButton";
 
 import * as prismicH from '@prismicio/helpers'
 import Link from "next/link";
-import Modal from 'react-modal'
 
 import styles from "./posts.module.scss";
-import modalStyles from "../../styles/modal-styles.module.scss"
+import { Modal } from "../../Components/Modal";
 
 type Post = {
   slug: string;
@@ -19,12 +18,11 @@ type Post = {
 }
 
 interface PostsProps {
-  posts: Post[]
+  posts: Post[],
 }
 
 export default function Posts({ posts }: PostsProps) {
   const [modalIsOpen, setModalIsOpen] = useState(false)
-
   const { data: session } = useSession()
 
   function handleOpenModal() {
@@ -62,33 +60,8 @@ export default function Posts({ posts }: PostsProps) {
           </div>
         )) }
       </main>
-
-      <Modal 
-        isOpen={modalIsOpen}
-        onRequestClose={() => setModalIsOpen(false)}
-        overlayClassName={modalStyles.reactModalOverlay}
-        className={modalStyles.reactModalContent}
-      >
-
-        <div className={modalStyles.signInContent} >
-          <span>Faça login para acessar o conteúdo</span>
-          <div className={modalStyles.traditionalSignInContent} >
-            <label htmlFor="email">E-mail</label>
-            <input type="email" />
-            <label htmlFor="password">Password</label>
-            <input type="password" />
-
-            <button type="submit" >Entrar</button>
-          </div>
-
-          <span>Ou</span>
-
-          <div className={modalStyles.socialSignInContent} >
-            <label>Sign In With Google</label>
-            <SignInButton />
-          </div>
-        </div>
-      </Modal>
+        
+      <Modal modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen} />
     </>
   );
 }

@@ -1,5 +1,4 @@
 import { FaSignInAlt, FaSignOutAlt } from "react-icons/fa";
-import { FiX } from "react-icons/fi";
 import { useSession, signIn, signOut } from "next-auth/react";
 
 import styles from "./styles.module.scss";
