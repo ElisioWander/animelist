@@ -10,3 +10,9 @@
         color: var(--yellow-100);
     }
 }
+
+@media(min-width: 1024px) {
+    .logo {
+        width: 248px;
+    }
+}

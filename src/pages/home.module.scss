@@ -6,32 +6,50 @@
     align-items: center;
     justify-content: flex-start;
 
-    img {
-        width: 220px;
+    background-image:  linear-gradient( to bottom, transparent -50%, #121214 98%), url('/images/home-wallpaper.jpg'); 
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    
+}   
 
-        position: absolute;
-        right: 0;
-        bottom: 0;
-
-        z-index: -1;
-    }
-}
 .hero {
     width: 720px;
     
     padding: 2rem;
-    margin-bottom: auto;
 
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+
+    transition: margin 0.2s linear;
+
+    p {
+        font-size: 1.3rem;
+        font-family: "Roboto", sans-serif;
+        font-weight: 500;
+
+        margin-bottom: 2rem;
+
+        > span {
+            color: var(--yellow-100);
+        }
+
+        transition: font-size 0.2s linear;
+    }
 
     > div {
         display: block;
 
-        font-size: 0.9rem;
+        margin-bottom: 2rem;
+
+        font-size: 1rem;
         font-weight: bold;
 
         color: var(--white);
+
+        transition: font-size 0.2s linear;
 
         span {
             color: var(--yellow-100);
@@ -39,33 +57,26 @@
     }
 
     h1 {
-        font-size: 1.8rem;
+        font-size: 2.4rem;
         font-family: "Manrope", sans-serif;
         font-weight: bold;
 
-        margin: 2rem 0 5rem 0;
-        padding: 0 2rem 0 0;
+        margin: 0 0 2rem 0;
 
-        line-height: 2.8rem;
+        line-height: 3rem;
 
         span {
             color: var(--yellow-100);
         }
-    }
 
-    p {
-        font-size: 1.1rem;
-        font-family: "Manrope", sans-serif;
-        font-weight: 500;
-
-        margin-bottom: 2rem;
+        transition: font-size 0.2s linear;
     }
 
     a {
-        width: 120px;
+        width: 90%;
         
         text-align: center;
-        align-self: flex-start;
+        align-self: center;
 
         padding: 1rem;
 
@@ -90,34 +101,52 @@
     }
 }
 
-@media(min-width: 375px) {
+@media(min-width: 344px) {
     .hero {
         h1 {
-            font-size: 2.3rem;
+            font-size: 2.8rem;
         }
     }
 }
 
-@media(min-width: 490px) {
+@media(min-width: 392px) {
     .hero {
-        h1, p {
-            text-align: center;
+        h1 {
+            font-size: 2.9rem;
         }
+    }
+}
+
+@media(min-width: 481px) {
+    .hero {
+        a {
+            width: 50%;
+            align-self: flex-start;
+        }
+    }
+}
+
+@media(min-width: 481px) {
+    .hero {
+        margin-left: 3rem;
+    }
+}
+
+@media(min-width: 651px) {
+    .hero {
+        > div {
+            font-size: 1.3rem;
+        }
+
+        margin-left: 5rem;
     }
 }
 
 //Tablet
-@media(min-width: 768px) {
-    .homeContainer {
-
-    }
-
+@media(min-width: 771px) {
     .hero {
-        padding: 4rem;
-
-        h1 {
-            margin: 6rem 0 2rem 0;
-            padding: 0 3rem;
+        > div {
+            font-size: 1.5rem;
         }
 
         a {
@@ -139,19 +168,24 @@
 
     .hero {
         width: 920px;
+        margin: 0 auto;
+
+        align-items: flex-start;
 
         padding: 2rem;
 
         h1 {
-            margin-top: 2rem;
+            font-size: 3.5rem;
 
-            font-size: 4rem;
-
-            line-height: 4.8rem;
+            line-height: 3.5rem;
         }
 
         p {
             font-size: 1.6rem;
+        }
+
+        a {
+            width: 320px;
         }
     }
 }

@@ -9,17 +9,19 @@ export default function Home() {
   return (
     <div className={styles.homeContainer} >
       <main className={styles.hero} >
+        { !session && (
+          <p>
+            Faça logIn e tenha acesso <br/> a <span>todo nosso conteúdo</span> 
+          </p>
+        ) }
+
         { session && (
           <div>Olá, <span>{session.user.name}</span>! Seja bem vindo! 🤗</div>
         ) }
 
         <h1>
-          Noticias atualizadas sobre o <span>universo dos animes</span>
+          Noticias <br/> atualizadas <br/> sobre <br/> o <span>universo dos <br/> animes</span>
         </h1>
-
-        {/* <p>
-          Aqui tem algumas sugestões para você ⬇️
-        </p> */}
 
         <Link href="/posts" >
           <a>News</a>
@@ -29,8 +31,6 @@ export default function Home() {
           <SignInButton />
         )}
       </main>
-
-      <img src="/images/background-home-girl-2.png" alt="background-girl-home" />
     </div>
   )
 }

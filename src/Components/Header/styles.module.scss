@@ -109,17 +109,6 @@
     ul {
       width: 100%;
 
-      li:last-child {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        button {
-          display: flex;
-          margin: 0;
-        }
-      }
-
       li {
         padding: 1rem 0;
 
@@ -137,6 +126,17 @@
           cursor: pointer;
         }
       }
+
+      li:last-child {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        button {
+          display: flex;
+          margin: 0;
+        }
+      }
     }
 
     button {
@@ -148,10 +148,13 @@
   }
 }
 
-@media (min-width: 768px) {
+
+//tablet
+@media (min-width: 771px) {
   .headerContent {
-    display: grid;
-    grid-template-columns: 300px 1fr 300px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
     .menuNav {
       display: flex;
@@ -176,6 +179,8 @@
           display: flex;
 
           list-style: none;
+
+          position: relative;
 
           a.active::after {
             content: "";
@@ -209,3 +214,5 @@
     }
   }
 }
+
+

@@ -1,22 +1,22 @@
 .userInfoContainer {
-    width: 420px;
-
     //desabilitado para mobile
     display: none;
 }
 
-@media(min-width: 768px) {
+@media(min-width: 771px) {
     .userInfoContainer {
         display: flex;
         align-items: center;
         justify-content: center;
+
+        span {
+            display: none;
+        }
     }
 
     .userProfilePhoto {
         width: 42px;
         height: 42px;
-
-        margin-left: 1rem;
         
         border-radius: 50%;
         border: solid 1px var(--yellow-100);
@@ -29,6 +29,38 @@
             
             
             border-radius: 50%;
+        }
+    }
+
+    .signInSession {
+        display: flex;
+        align-items: center;
+        position: relative;
+
+        button {
+            margin: 0;
+        }
+
+        > svg {
+            width: 32px;
+            height: 32px;
+
+            position: absolute;
+            right: 131px;
+        }
+    }
+}
+
+@media(min-width: 1024px) {
+    .userInfoContainer {
+        width: 248px;
+
+        > span {
+            display: block;
+
+            font-size: 0.8rem;
+
+            margin-right: 8px;
         }
     }
 }

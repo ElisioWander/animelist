@@ -1,5 +1,6 @@
 import { useSession } from "next-auth/react";
 import { SignInButton } from "../SignInButton";
+import { FaUserCircle } from 'react-icons/fa'
 
 import styles from "./styles.module.scss";
 
@@ -17,7 +18,10 @@ export function UserInfo() {
     </div>
   ) : (
     <div className={styles.userInfoContainer} >
-      <SignInButton />
+      <div className={styles.signInSession} >
+        <FaUserCircle />
+        <SignInButton />
+      </div>
     </div>
   );
 }
