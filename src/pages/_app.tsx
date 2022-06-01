@@ -3,12 +3,15 @@ import { Header } from '../Components/Header'
 import { SessionProvider } from 'next-auth/react'
 
 import '../styles/global.scss'
+import { MenuContextProvider } from '../Context/menuContext'
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   return (
     <SessionProvider session={session} >
-      <Header />
-      <Component {...pageProps} />
+      <MenuContextProvider>
+        <Header />
+        <Component {...pageProps} />
+      </MenuContextProvider>
     </SessionProvider>
   )
 }

@@ -6,15 +6,21 @@
     align-items: center;
     justify-content: flex-start;
 
-    background: linear-gradient(to right, #000, transparent 100%), url("https://i.pinimg.com/564x/76/ee/e9/76eee9ba6452a1193de810fc0e85f305.jpg");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+    img {
+        width: 220px;
+
+        position: absolute;
+        right: 0;
+        bottom: 0;
+
+        z-index: -1;
+    }
 }
 .hero {
     width: 720px;
     
     padding: 2rem;
+    margin-bottom: auto;
 
     display: flex;
     flex-direction: column;
@@ -22,27 +28,28 @@
     > div {
         display: block;
 
-        font-size: 1.5rem;
+        font-size: 0.9rem;
         font-weight: bold;
 
         color: var(--white);
 
         span {
-            color: var(--cyan);
+            color: var(--yellow-100);
         }
     }
 
     h1 {
-        font-size: 2.2rem;
+        font-size: 1.8rem;
         font-family: "Manrope", sans-serif;
         font-weight: bold;
 
-        margin: 4rem 0 1rem 0;
+        margin: 2rem 0 5rem 0;
+        padding: 0 2rem 0 0;
 
         line-height: 2.8rem;
 
         span {
-            color: var(--cyan);
+            color: var(--yellow-100);
         }
     }
 
@@ -55,13 +62,12 @@
     }
 
     a {
-        width: 240px;
+        width: 120px;
         
         text-align: center;
-        align-self: center;
+        align-self: flex-start;
 
         padding: 1rem;
-        margin-bottom: 1rem;
 
         border-radius: 100px;
 
@@ -70,7 +76,7 @@
 
         color: var(--white);
 
-        background-color: var(--cyan);
+        background-color: var(--yellow-100);
 
         transition: all 0.2s;
 
@@ -80,11 +86,8 @@
     }
 
     button {
-        width: 240px;
-
-        align-self: center;
+        display: none;
     }
-
 }
 
 @media(min-width: 375px) {
@@ -106,10 +109,7 @@
 //Tablet
 @media(min-width: 768px) {
     .homeContainer {
-        background: linear-gradient(to top, #000, transparent 100%), url("https://files.wallpaperpass.com/2019/10/violet%20evergarden%20wallpaper%20117%20-%202907x4096.jpg");
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
+
     }
 
     .hero {

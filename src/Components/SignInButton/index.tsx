@@ -12,12 +12,12 @@ export function SignInButton() {
   return session ? (
     <>
       <button
-        type="button"
-        className={styles.signOutButton}
-        onClick={() => signOut()}
-      >
-        <FaSignOutAlt color="#13C4A3" fontSize={20} />
-      </button>
+      type="button"
+      className={styles.signOutButton}
+      onClick={() => signOut()}
+    >
+      <FaSignOutAlt color="#EBA417" />
+    </button>
     </>
   ) : (
     <button
@@ -25,8 +25,10 @@ export function SignInButton() {
       className={styles.signInButton}
       onClick={() => signIn('google')}
     >
-      <FaSignInAlt color="#EBA417" />
+      <FaSignInAlt color="#13C4A3" />
       Sign In
     </button>
   );
 }
+
+

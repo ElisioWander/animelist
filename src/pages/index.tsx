@@ -17,9 +17,9 @@ export default function Home() {
           Noticias atualizadas sobre o <span>universo dos animes</span>
         </h1>
 
-        <p>
+        {/* <p>
           Aqui tem algumas sugestões para você ⬇️
-        </p>
+        </p> */}
 
         <Link href="/posts" >
           <a>News</a>
@@ -29,6 +29,8 @@ export default function Home() {
           <SignInButton />
         )}
       </main>
+
+      <img src="/images/background-home-girl-2.png" alt="background-girl-home" />
     </div>
   )
 }

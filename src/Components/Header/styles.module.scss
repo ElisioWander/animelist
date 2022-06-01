@@ -2,7 +2,7 @@
   width: 100%;
   height: calc(5rem + 1px);
 
-  border-bottom: solid 1px var(--cyan);
+  border-bottom: solid 2px var(--gray-800);
 }
 
 .headerContent {
@@ -19,53 +19,193 @@
   nav {
     display: none;
   }
+}
 
-  button {
+.menuSection {
+  width: 100%;
+  height: 5rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: right;
+
+  .openMenuToggle {
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    div {
+      width: 100%;
+      height: 3px;
+
+      margin: 2px auto;
+
+      transition-duration: 0.3s;
+
+      background-color: var(--yellow-100);
+
+      &:last-child {
+        width: 70%;
+
+        margin-right: 0;
+      }
+    }
+  }
+
+  .menuNav {
     display: none;
-    margin-left: auto;
   }
 }
 
-@media (min-width: 425px) {
-  .headerContent {
+.on {
+  width: 100%;
+  height: 100%;
 
-    & a + a {
-      margin-left: 1rem;
+  z-index: 100;
+
+  position: absolute;
+
+  bottom: 0;
+  left: 0;
+
+  opacity: 0.96;
+
+  background-color: var(--black);
+
+  .openMenuToggle {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+
+    z-index: 150;
+
+    div {
+      width: 80%;
+
+      margin-left: 10px;
+
+      &:first-child {
+        transform: rotate(45deg) translate(-4px, 7px);
+      }
+
+      &:last-child {
+        transform: rotate(-45deg) translate(0px, -7px);
+        width: 80%;
+      }
+    }
+  }
+
+  .menuNav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    ul {
+      width: 100%;
+
+      li:last-child {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        button {
+          display: flex;
+          margin: 0;
+        }
+      }
+
+      li {
+        padding: 1rem 0;
+
+        list-style: none;
+        text-align: center;
+
+        & + li {
+          margin-top: 1rem;
+        }
+
+        a {
+          font-size: 2rem;
+          font-weight: bold;
+
+          cursor: pointer;
+        }
+      }
+    }
+
+    button {
+      position: absolute;
+
+      top: 16px;
+      left: 0;
     }
   }
 }
 
 @media (min-width: 768px) {
   .headerContent {
-    nav {
-      display: flex;
-    }
+    display: grid;
+    grid-template-columns: 300px 1fr 300px;
 
-    a {
-      height: 5rem;
+    .menuNav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      position: initial;
 
       line-height: 5rem;
 
-      position: relative;
+      background-color: transparent;
 
-      &.active::after {
-        content: "";
-  
-        width: 100%;
-        height: 3px;
+      ul {
+        display: flex;
+        gap: 2rem;
 
-        border-radius: 3px 3px 0 0;
-  
-        background-color: var(--cyan);
-  
-        position: absolute;
-        bottom: 0;
-        left: 0;
+        align-items: center;
+        justify-content: center;
+
+        li {
+
+          display: flex;
+
+          list-style: none;
+
+          a.active::after {
+            content: "";
+
+            width: 100%;
+            height: 3px;
+
+            border-top-left-radius: 0.5rem;
+            border-top-right-radius: 0.5rem;
+
+            position: absolute;
+            bottom: 0;
+            left: 0;
+
+            background-color: var(--yellow-100);
+          }
+        }
+      }
+
+      //desabilitando o botão de signIn para renderizar ele no component
+      //"UserInfo"
+      button {
+        display: none;
       }
     }
+  }
 
-    button {
-      display: flex;
+  .menuSection {
+    .openMenuToggle {
+      display: none;
     }
   }
 }

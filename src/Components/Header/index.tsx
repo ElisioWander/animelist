@@ -1,34 +1,51 @@
 import { useSession } from "next-auth/react";
+import { useMenuToggle } from "../../Context/menuContext";
 import { ActiveLink } from "../ActiveLink";
 import { Logo } from "../Logo/index";
-import { MenuSection } from "../Menu/MenuSection";
 import { SignInButton } from "../SignInButton";
 import { UserInfo } from "../UserInfo";
 
 import styles from "./styles.module.scss";
 
 export function Header() {
-  const { data: session } = useSession()
+  const { data: session } = useSession();
+
+  const { activeMenu, handleOpenMenuToggle } = useMenuToggle()
 
   return (
     <header className={styles.headerContainer}>
       <div className={styles.headerContent}>
         <Logo />
 
-        <nav>
-          <ActiveLink activeClass={styles.active} href="/">
-            <a>Home</a>
-          </ActiveLink>
-          <ActiveLink activeClass={styles.active} href="/posts">
-            <a>Animes</a>
-          </ActiveLink>
-        </nav>
+        <div className={`${styles.menuSection} ${activeMenu ? styles.on : ""}`}>
+          <div className={styles.openMenuToggle} onClick={handleOpenMenuToggle}>
+            <div></div>
+            <div></div>
+          </div>
+          <nav className={`${styles.menuNav} ${styles.on}`}>
+            <ul>
+              <li>
+                <ActiveLink activeClass={styles.active} href="/">
+                  <a>Home</a>
+                </ActiveLink>
+              </li>
+              <li>
+                <ActiveLink activeClass={styles.active} href="/posts">
+                  <a>Animes</a>
+                </ActiveLink>
+              </li>
+              <li>
+                <ActiveLink activeClass={styles.active} href="/animesRate">
+                  <a>Melhores</a>
+                </ActiveLink>
+              </li>
+            </ul>
 
-        <MenuSection />
+            <SignInButton />
+          </nav>
+        </div>
 
         <UserInfo />
-
-        <SignInButton />
       </div>
     </header>
   );

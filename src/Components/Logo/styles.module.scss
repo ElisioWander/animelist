@@ -1,6 +1,4 @@
 .logo {
-    margin-right: 3rem;
-
     font-size: 1.5rem;
     font-weight: bold;
 
@@ -9,13 +7,6 @@
     span {
         margin-left: 4px;
 
-        color: var(--cyan);
-    }
-}
-
-//Deskotop
-@media(min-width: 1024px) {
-    .logo {
-        margin-right: 5rem;
+        color: var(--yellow-100);
     }
 }
