@@ -10,12 +10,16 @@
 
   .banner {
     width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
     
     margin: 0 auto;
     
     img {
       width: 100%;
-      height: 100%;
+      height: inherit;
       object-fit: cover;
     }
   }
@@ -53,7 +57,7 @@
   padding: 0 0.5rem;
 
   h1 {
-    font-size: 2.5rem;
+    font-size: 1.8rem;
     font-family: 'Manrope', sans-serif;
     text-align: center;
 
@@ -61,20 +65,27 @@
     padding: 1.2rem;
 
     color: var(--gray-300);
+
+    transition: font-size 0.2s linear;
   }
 
   .animeInfo {
     h3 {
       font-size: 1.4rem;
       color: var(--gray-300);
+
+      transition: font-size 0.2s linear;
     }
 
     p {
-      font-size: 1.1rem;
-      line-height: 16px;
+      font-size: 0.9rem;
+      font-style: italic;
+      line-height: 24px;
       letter-spacing: 1.1px;
 
       padding: 0.8rem 0;
+
+      transition: font-size 0.2s linear;
     }
 
     ul {
@@ -88,13 +99,22 @@
         padding: 0.8rem;
 
         list-style: circle;
-
-        strong {
-          font-size: 1.1rem;
-
-          color: var(--gray-300);
-        }
       }
+    }
+
+    strong {
+      font-size: 1.1rem;
+
+      color: var(--gray-300);
+
+      transition: font-size 0.2s linear;
+    }
+
+    span {
+      letter-spacing: 1.5px;
+      font-size: 0.9rem;
+
+      transition: font-size 0.2s linear;
     }
   }
 
@@ -104,29 +124,110 @@
       
       margin-top: 2rem;
       color: var(--gray-300);
+
+      transition: font-size 0.2s linear;
     }
 
     p {
-      font-size: 1.1rem;
-      line-height: 16px;
+      font-size: 0.9rem;
+      line-height: 24px;
       letter-spacing: 1.1px;
 
       padding: 0.8rem 0 2rem 0;
+
+      transition: font-size 0.2s linear;
+    }
+
+    .iframeContainer {
+      width: 100%;
+      height: 420px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 1.5rem 0;
+      margin: 0 auto;
+
+      iframe {
+        width: 100%;
+        height: 100%;
+      }
     }
   }
 }
 
-@media(min-width: 414px) {
+
+//>>>>>>>>RESPONSIVITY<<<<<<<<
+
+@media(min-width: 381px) {
   .hero {
-    padding: 0 1.5rem;
-
     h1 {
-      text-align: start;
+      font-size: 2rem;
     }
   }
 }
 
-@media(min-width: 720px) {
+@media(min-width: 421px) {
+
+}
+
+@media(min-width: 471px) {
+  .hero {
+    h1 {
+      font-size: 2.2rem;
+    }
+
+    .animeInfo {
+      h3 {
+        font-size: 1.5rem;
+      }
+
+      strong {
+        font-size: 1.3rem;
+      }
+
+      span {
+        font-size: 1rem;
+      }
+    }
+
+    .content {
+      h3 {
+        font-size: 1.5rem;
+      }
+    }
+  }
+}
+
+@media(min-width: 571px) {
+  .hero {
+    .animeInfo {
+      h3 {
+        font-size: 1.8rem;
+      }
+
+      p {
+        font-size: 1rem;
+      }
+
+      span {
+        font-size: 1.1rem;
+      }
+    }
+
+    .content {
+      h3 {
+        font-size: 1.8rem;
+      }
+
+      p {
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+@media(min-width: 721px) {
   .postContainer {
     width: 720px;
 
@@ -134,17 +235,41 @@
 
     .banner {
       width: 80%;
-      height: 480px;
+      height: 220px;
     }
 
     .hero {
       padding: 0 4rem;
+
+      .animeInfo {
+        h3 {
+          font-size: 1.9rem;
+        }
+
+        p {
+          font-size: 1.2rem;
+        }
+      }
+
+      .content {
+        h3 {
+          font-size: 1.9rem;
+        }
+
+        p {
+          font-size: 1.2rem;
+        }
+
+        .iframeContainer {
+          width: 80%;
+        }
+      }
     }
   }
 }
 
 @media(min-width: 1024px) {
   .postContainer {
-    width: 1024px;
+    width: 981px;
   }
 }

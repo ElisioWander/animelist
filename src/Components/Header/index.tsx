@@ -31,12 +31,12 @@ export function Header() {
               </li>
               <li>
                 <ActiveLink activeClass={styles.active} href="/posts">
-                  <a>Animes</a>
+                  <a>Blog</a>
                 </ActiveLink>
               </li>
               <li>
-                <ActiveLink activeClass={styles.active} href="/animesRate">
-                  <a>Melhores</a>
+                <ActiveLink activeClass={styles.active} href="/anime-list">
+                  <a>Animes</a>
                 </ActiveLink>
               </li>
             </ul>

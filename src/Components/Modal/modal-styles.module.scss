@@ -116,15 +116,32 @@
         }
     }
 
+    .separator {
+        width: 50%;
+        height: 2px;
+
+        margin: 2rem 0;
+
+        border-radius: 50%;
+
+        background-color: var(--gray-100);
+    }
+
     .socialSignInContent {
         label {
-            display: block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
             margin-bottom: 0.5rem;
 
             font-size: 1rem;
             font-weight: bold;
             text-align: center;
+
+            svg {
+                margin-right: 8px;
+            }
         }
 
         //signInButton

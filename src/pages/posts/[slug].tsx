@@ -46,9 +46,9 @@ export default function Post({ post }: PostProps) {
             <>
               <h3>Staff</h3>
               <ul>
-                <li><strong>Diretor: </strong>{post.staff.director}</li>
-                <li><strong>Design: </strong>{post.staff.design}</li>
-                <li><strong>Estúdio: </strong>{post.staff.studio}</li>
+                <li><strong>Diretor: </strong><span>{post.staff.director}</span></li>
+                <li><strong>Design: </strong><span>{post.staff.design}</span></li>
+                <li><strong>Estúdio: </strong><span>{post.staff.studio}</span></li>
               </ul>
             </>
           )}
@@ -60,7 +60,7 @@ export default function Post({ post }: PostProps) {
           <p>{post.content}</p>
 
           {post.video && (
-            <div>
+            <div className={styles.iframeContainer} >
               <iframe
                 src={post.video}
                 frameBorder="0"

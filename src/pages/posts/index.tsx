@@ -2,7 +2,6 @@ import { GetStaticProps } from "next";
 import { prismicClient } from "../../services/prismic";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
-import { SignInButton } from "../../Components/SignInButton";
 
 import * as prismicH from '@prismicio/helpers'
 import Link from "next/link";
@@ -72,12 +71,12 @@ export const getStaticProps: GetStaticProps = async () => {
     pageSize: 100
   })
 
-  const posts = response.map((post) => {
+  const posts = response.map(post => {
     return {
       slug: post.uid,
       banner: post.data.banner.url,
       title: prismicH.asText(post.data.title),
-      summary: post.data.sinopse.find((sinopse) => sinopse.type === 'paragraph')?.text ?? "",
+      summary: post.data.sinopse.find(sinopse => sinopse.type === 'paragraph')?.text ?? "",
     }
   })
 
