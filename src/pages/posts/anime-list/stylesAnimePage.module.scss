@@ -1,0 +1,228 @@
+.pageContainer {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+}
+
+.pageContent {
+  width: 100%;
+
+  > a {
+    width: 32px;
+    height: 32px;
+
+    margin: 0.5rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    padding: 0.5rem;
+
+    background-color: var(--gray-900);
+
+    transition: all 0.2s;
+    -webkit-transition: all 0.2s;
+
+    &:hover {
+      filter: brightness(0.8);
+
+      transform: scale(1.1);
+      -webkit-transform: scale(1.1);
+    }
+
+    svg {
+      color: var(--white);
+    }
+  }
+
+  img {
+    width: 100%;
+
+    object-fit: cover;
+  }
+
+  background-position: center;
+
+  border-bottom: solid 1px var(--gray-300);
+
+  .pageContentCard {
+    width: 80%;
+    max-width: 431px;
+
+    margin: 2rem auto;
+    padding: 2rem 1rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    background-color: rgba(18, 18, 20, 0.75);
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.125);
+
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+
+    img {
+      width: 80%;
+
+      padding: 0.2rem;
+
+      // object-fit: cover;
+
+      box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+        rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+        rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    }
+
+    h1 {
+      text-align: center;
+
+      font-size: 1.6rem;
+      font-weight: bold;
+      font-family: "Manrope", sans-serif;
+
+      margin-top: 0.7rem;
+
+      letter-spacing: 0.5px;
+
+      color: var(--gray-300);
+    }
+
+    ul {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      justify-content: center;
+
+      margin: 1rem;
+
+      li {
+        font-size: 0.8rem;
+        font-weight: bold;
+
+        text-transform: capitalize;
+
+        text-align: center;
+
+        line-height: 1.5rem;
+
+        list-style: circle;
+
+        color: var(--gray-100);
+      }
+    }
+
+    a {
+      height: 2.7rem;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+
+      padding: 0.5rem 1.4rem;
+      margin-top: 0.5rem;
+
+      border: none;
+      border-radius: 1.8rem;
+
+      font-weight: 500;
+
+      color: var(--gray-800);
+      background-color: var(--white);
+
+      box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+        rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+        rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+
+      transition: all 0.3s;
+      -webkit-transition: all 0.3s;
+
+      &:hover {
+        filter: brightness(0.8);
+
+        transform: scale(1.1);
+        -webkit-transform: scale(1.1);
+      }
+
+      svg {
+        font-size: 1.3rem;
+
+        color: red;
+      }
+    }
+  }
+}
+
+.animeInfo {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+
+  padding: 2rem;
+
+  h3 {
+    font-size: 1rem;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+
+    color: var(--gray-100);
+  }
+
+  p {
+    font-size: 0.9rem;
+    font-weight: normal;
+    font-style: italic;
+
+    letter-spacing: 0.3px;
+
+    margin: 0.3rem 0 1rem 0;
+
+    color: var(--gray-300);
+  }
+
+  li {
+    list-style: none;
+    line-height: 2rem;
+    font-size: 0.9rem;
+    font-style: normal;
+
+    color: var(--gray-300);
+
+    strong {
+      font-size: 1.1rem;
+      font-weight: bold;
+
+      letter-spacing: 0.5px;
+
+      color: var(--gray-100);
+    }
+
+    span {
+      display: inline-block;
+
+      padding: 0 1.2rem;
+
+      border-radius: 1.5rem;
+
+      background-color: var(--yellow-100);
+    }
+  }
+}

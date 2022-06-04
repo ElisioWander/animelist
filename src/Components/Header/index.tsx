@@ -35,7 +35,7 @@ export function Header() {
                 </ActiveLink>
               </li>
               <li>
-                <ActiveLink activeClass={styles.active} href="/anime-list">
+                <ActiveLink activeClass={styles.active} href="/posts/anime-list">
                   <a>Animes</a>
                 </ActiveLink>
               </li>
