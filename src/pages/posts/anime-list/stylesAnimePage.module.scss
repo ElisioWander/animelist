@@ -7,6 +7,8 @@
   justify-content: center;
 
   position: relative;
+
+  transition: all 0.3s linear;
 }
 
 .pageContent {
@@ -16,13 +18,14 @@
     width: 32px;
     height: 32px;
 
-    margin: 0.5rem;
+    margin: 1.5rem 0 1rem 1rem;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    border-radius: 50%;
+    border: solid 1px var(--white);
+    border-radius: 50rem;
 
     padding: 0.5rem;
 
@@ -55,15 +58,11 @@
 
   .pageContentCard {
     width: 80%;
-    max-width: 431px;
+
+    text-align: center;
 
     margin: 2rem auto;
     padding: 2rem 1rem;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
 
     backdrop-filter: blur(16px) saturate(180%);
     -webkit-backdrop-filter: blur(16px) saturate(180%);
@@ -72,97 +71,115 @@
     border: 1px solid rgba(255, 255, 255, 0.125);
 
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
-    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
-    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+      rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+      rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 
-    img {
-      width: 80%;
-
-      padding: 0.2rem;
-
-      // object-fit: cover;
-
-      box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
-        rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
-        rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-    }
-
-    h1 {
-      text-align: center;
-
-      font-size: 1.6rem;
-      font-weight: bold;
-      font-family: "Manrope", sans-serif;
-
-      margin-top: 0.7rem;
-
-      letter-spacing: 0.5px;
-
-      color: var(--gray-300);
-    }
-
-    ul {
+    .cardImage {
       width: 100%;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: center;
-      justify-content: center;
+      max-width: 431px;
 
-      margin: 1rem;
+      margin: 0 auto;
 
-      li {
-        font-size: 0.8rem;
-        font-weight: bold;
+      img {
+        width: 80%;
+        height: 100%;
 
-        text-transform: capitalize;
+        padding: 0.2rem;
 
+        object-fit: cover;
+
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+          rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+          rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+      }
+    }
+
+    .cardContent {
+      h1 {
         text-align: center;
 
-        line-height: 1.5rem;
+        font-size: 1.6rem;
+        font-weight: bold;
+        font-family: "Manrope", sans-serif;
 
-        list-style: circle;
+        margin-top: 0.7rem;
 
-        color: var(--gray-100);
-      }
-    }
+        letter-spacing: 0.5px;
 
-    a {
-      height: 2.7rem;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.6rem;
-
-      padding: 0.5rem 1.4rem;
-      margin-top: 0.5rem;
-
-      border: none;
-      border-radius: 1.8rem;
-
-      font-weight: 500;
-
-      color: var(--gray-800);
-      background-color: var(--white);
-
-      box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
-        rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
-        rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-
-      transition: all 0.3s;
-      -webkit-transition: all 0.3s;
-
-      &:hover {
-        filter: brightness(0.8);
-
-        transform: scale(1.1);
-        -webkit-transform: scale(1.1);
+        color: var(--gray-300);
       }
 
-      svg {
-        font-size: 1.3rem;
+      p {
+        display: none;
+      }
 
-        color: red;
+      ul {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        justify-content: center;
+
+        padding: 1rem;
+
+        li {
+          font-size: 0.8rem;
+          font-weight: bold;
+
+          text-transform: capitalize;
+
+          text-align: center;
+
+          line-height: 1.5rem;
+
+          list-style: circle;
+
+          color: var(--gray-100);
+
+          transition: line-height 0.2s linear;
+        }
+      }
+
+      a {
+        height: 2.7rem;
+        width: 180px;
+
+        margin: 1rem auto;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.6rem;
+
+        padding: 0.5rem 1.4rem;
+
+        border: none;
+        border-radius: 1.8rem;
+
+        font-weight: 500;
+
+        color: var(--gray-800);
+        background-color: var(--white);
+
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+          rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+          rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+
+        transition: all 0.3s;
+        -webkit-transition: all 0.3s;
+
+        &:hover {
+          filter: brightness(0.8);
+
+          transform: scale(1.1);
+          -webkit-transform: scale(1.1);
+        }
+
+        svg {
+          font-size: 1.3rem;
+
+          color: red;
+        }
       }
     }
   }
@@ -198,6 +215,10 @@
     color: var(--gray-300);
   }
 
+  ul + ul {
+    display: none;
+  }
+
   li {
     list-style: none;
     line-height: 2rem;
@@ -205,6 +226,8 @@
     font-style: normal;
 
     color: var(--gray-300);
+
+    text-transform: capitalize;
 
     strong {
       font-size: 1.1rem;
@@ -215,14 +238,248 @@
       color: var(--gray-100);
     }
 
-    span {
-      display: inline-block;
+    > span {
+      margin: 0 8px 8px 0;
+    }
 
-      padding: 0 1.2rem;
+    span {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 0 0.5rem;
 
       border-radius: 1.5rem;
 
-      background-color: var(--yellow-100);
+      color: var(--gray-300);
+      background-color: var(--gray-700);
     }
+  }
+}
+
+//>>>>>>>>>RESPONSIVITY<<<<<<<<<<
+
+@media (min-width: 361px) {
+  .pageContent {
+    .pageContentCard {
+      .cardContent {
+        h1 {
+          font-size: 1.7rem;
+          padding: 0 3px;
+        }
+  
+        ul {
+          li {
+            font-size: 0.9rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 391px) {
+  .pageContent {
+    .pageContentCard {
+      .cardContent {
+        h1 {
+          font-size: 1.9rem;
+        }
+  
+        ul {
+          li {
+            font-size: 1rem;
+            line-height: 2.2rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 431px) {
+  .pageContent {
+    .pageContentCard {
+      .cardContent {
+        h1 {
+          font-size: 2rem;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 451px) {
+  .pageContent {
+    .pageContentCard {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+
+      .cardImage {
+        img {
+          width: 100%;
+        }
+      }
+
+      .cardContent {
+        h1 {
+          font-size: 1.8rem;
+          margin: 0;
+
+          text-align: start;
+        }
+
+        ul {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: center;
+
+          margin-bottom: 3rem;
+        }
+
+        a {
+          width: 100%;
+
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
+}
+
+@media(min-width: 581px) {
+  .pageContent {
+    .pageContentCard {
+      .cardImage {
+        width: 210px;
+        height: 325px;
+      }
+
+      .cardContent {
+        h1 {
+          font-size: 2rem;
+        }
+
+        a {
+          width: 210px;
+
+          margin-left: 0;
+        }
+      }
+    }
+  }
+}
+
+@media(min-width: 651px) {
+  .pageContent {
+    .pageContentCard {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+    }
+  }
+}
+
+@media(min-width: 761px) {
+  .pageContent {
+    .pageContentCard {
+      .cardContent {
+        ul {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+
+          li {
+            text-align: start;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media(min-width: 801px) {
+  .pageContent {
+    .pageContentCard {
+      .cardContent {
+        h1 {
+          font-size: 2.4rem;
+        }
+
+        ul {
+          li {
+            font-size: 1.1rem;
+          }
+        }
+
+        a {
+          font-size: 1.2rem;
+          width: 240px;
+        }
+      }
+    }
+  }
+}
+
+@media(min-width: 1024px) {
+  .pageContainer {
+    display: grid;
+    grid-template-columns: 1fr 220px;
+
+    .pageContent {
+      height: 100%;
+      border-bottom: none;
+
+      a {
+        width: 84px;
+      }
+
+      .cardContent {
+        ul { 
+          display: none;
+        }
+
+        p {
+          display: block;
+
+          margin: 0.5rem 0 2rem 0;
+
+          font-size: 1rem;
+          font-weight: normal;
+          font-style: italic;
+
+          letter-spacing: 0.3px;
+
+          text-align: start;
+
+          color: var(--gray-100);
+        }
+      }
+    }
+
+    .animeInfo {
+      height: 100%;
+
+      display: flex;
+      flex-direction: column;
+
+      justify-content: flex-start;
+
+      padding-top: 2rem;
+
+      h3, p {
+        display: none;
+      }
+
+      ul {
+        display: block;
+      }
+    }
+  }
+}
+
+@media(min-width: 1086px) {
+  .pageContainer {
+    grid-template-columns: 1fr 250px;
   }
 }

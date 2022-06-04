@@ -184,6 +184,20 @@
 
           position: relative;
 
+          a {
+            font-size: 1rem;
+            font-family: "Menrope", sans-serif;
+            letter-spacing: 0.2px;
+
+            color: var(--gray-300);
+
+            transition: filter 0.2s;
+          }
+
+          a:hover {
+            filter: brightness(0.8);
+          }
+
           a.active::after {
             content: "";
 
