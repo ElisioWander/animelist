@@ -13,18 +13,17 @@ type GenreAnime = {
 
 type Anime = {
   id: string;
-  title?: string;
+  title: string;
   poster?: string;
-  posterLarge?: string;
-  posterOriginal?: string;
-  bannerOriginal?: string;
   showType?: string;
-  episodes?: string;
+  episodes: string;
   status?: string;
   youtubeVideo?: string;
   score?: string;
   description?: string;
-  startDate?: string;
+  year?: string;
+  season?: string
+  ageRating?: string;
 }
 
 interface AnimePageProps {
@@ -34,6 +33,13 @@ interface AnimePageProps {
 
 export default function AnimePage({ anime, genres }: AnimePageProps) {
   const [wideVersion, setWideVersion] = useState<number| null>(null)
+
+  // useEffect(() => {
+  //   fetch("https://api.jikan.moe/v4/anime/1")
+  //   .then(response => response.json())
+  //   .then(response => console.log(response))
+  //   .catch(err => console.log(err))
+  // }, [])
 
   useEffect(() => {
     const screenWidth = document.body.clientWidth
@@ -46,7 +52,7 @@ export default function AnimePage({ anime, genres }: AnimePageProps) {
       <div
         style={{
           'backgroundImage': `linear-gradient(to bottom, transparent -50%, #121214 98%),
-            url(${ wideVersion < 771 ? anime.posterOriginal : anime.bannerOriginal})`,
+            url(${ wideVersion < 771 ? anime.poster : anime.poster})`,
           'backgroundSize': 'cover',
           'backgroundRepeat': 'no-repeat',
           'backgroundPosition': 'center',
@@ -71,9 +77,9 @@ export default function AnimePage({ anime, genres }: AnimePageProps) {
             <h1>{anime.title}</h1>
             <ul>
               <li>Verção - {anime.showType}</li>
-              <li>Nota - {anime.score}</li>
               <li>Episódios - {anime.episodes}</li>
               <li>Status - {anime.status}</li>
+              <li>Nota - {anime.score}</li>
             </ul>
 
             <p>{anime.description}</p>
@@ -91,9 +97,9 @@ export default function AnimePage({ anime, genres }: AnimePageProps) {
         <p>{anime.description}</p>
 
         <ul>
-          <li><strong>Ano: </strong>{anime.startDate}</li>
-          <li><strong>Temporada: </strong>2</li>
-          <li><strong>Status: </strong>{anime.status}</li>
+          <li><strong>Ano: </strong>{anime.year}</li>
+          <li><strong>Temporada: </strong>{anime.season}</li>
+          <li><strong>Verção:</strong> {anime.showType}</li>
           <li>
             <strong>Gênero: </strong>
             { genres && genres.map(genre => (
@@ -103,13 +109,14 @@ export default function AnimePage({ anime, genres }: AnimePageProps) {
             )) }
           </li>
           <li><strong>Estúdio: </strong>UFOTABLE</li>
+          <li><strong>Censura: </strong>{anime.ageRating}</li>
         </ul>
 
         <ul>
-          <li><strong>Verção:</strong> {anime.showType}</li>
+          
           <li><strong>Nota:</strong> {anime.score}</li>
           <li><strong>Episódios:</strong> {anime.episodes}</li>
-          <li><strong>Status:</strong> {anime.status}</li>
+          <li><strong>Status: </strong>{anime.status}</li>
         </ul>
       </main>
     </div>
@@ -125,41 +132,32 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 
 export const getStaticProps:GetStaticProps = async ({params}) => {
-  const { id } = params
+  const { mal_id } = params
 
-  const response = await api.get(`${id}`)
-  const animes = response.data
+  //pegar o anime pelo ID
+  const animesResponse = await api.get(`anime/${mal_id}`)
+  const animes = animesResponse.data
 
-  const results = await api.get(`${id}/genres`)
-  const genres = results.data.data.map(genre => {
-    return {
-      id: genre.id,
-      name: genre.attributes.name
-    }
-  })
+  console.log(animes.data)
 
   const anime = {
     ...animes.data,
-    id: animes.data.id,
-    title: animes.data.attributes.canonicalTitle,
-    poster: animes.data.attributes.posterImage.small,
-    showType: animes.data.attributes.showType,
-    episodes: animes.data.attributes.episodeCount,
-    status: animes.data.attributes.status,
-    youtubeVideo: animes.data.attributes.youtubeVideoId,
-    score: animes.data.attributes.averageRating,
-    description: animes.data.attributes.description.substring(0, 400)+'...',
-    startDate: new Intl.DateTimeFormat('pt-BR', {
-      day: '2-digit',
-      month: '2-digit',
-      year: 'numeric'
-    }).format(new Date(animes.data.attributes.startDate)),
-    posterLarge: animes.data.attributes.posterImage.large,
-    posterOriginal: animes.data.attributes.posterImage.original,
-    bannerOriginal: animes.data.attributes.coverImage.original
+    id: animes.data.mal_id,
+    title: animes.data.title,
+    poster: animes.data.images.jpg.large_image_url,
+    showType: animes.data.type,
+    episodes: animes.data.episodes,
+    status: animes.data.status,
+    youtubeVideo: animes.data.trailer.youtube_id,
+    score: animes.data.score,
+    description: animes.data.synopsis.substring(0, 600)+'...',
+    year: animes.data.year,
+    season: animes.data.season,
+    posterLarge: animes.data.images.jpg.large_image_url,
+    ageRating: animes.data.rating,
   }
 
   return {
-    props: { anime, genres }
+    props: { anime }
   }
 }
