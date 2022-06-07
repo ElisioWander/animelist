@@ -39,8 +39,12 @@ export default function Post({ post }: PostProps) {
         <h1>{post.title}</h1>
 
         <section className={styles.animeInfo} >
-          <h3>Sinopse</h3>
-          <p>{post.sinopse}</p>
+          { post.sinopse && (
+            <>
+              <h3>Sinopse</h3>
+              <p>{post.sinopse}</p>
+            </>
+          ) }
 
           {post.staff.director && (
             <>
@@ -69,10 +73,6 @@ export default function Post({ post }: PostProps) {
           )}
         </div>
       </main>
-
-      <Link href="/posts" >
-        <a>Voltar</a>
-      </Link>
     </div>
   )
 }

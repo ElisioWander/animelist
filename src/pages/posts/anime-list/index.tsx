@@ -1,7 +1,8 @@
 import { GetServerSideProps } from "next";
 import Link from "next/link";
 import { FormEvent, useEffect, useState } from "react";
-import { SearchBox } from "../../../Components/Form/searchBox";
+import { SearchBox } from "../../../Components/Form/SearchBox";
+import { Spinner } from "../../../Components/Spinner/Index";
 import { api } from "../../../services/axios";
 
 import styles from "./styles.module.scss";
@@ -28,8 +29,8 @@ interface AnimeListProps {
 
 export default function AnimeList({ animes }: AnimeListProps) {
   const [search, setSearch] = useState<null | string>(null);
-  const [value, setValue] = useState<null | string>(null);
   const [animeData, setAnimeData] = useState<AnimeInfoData | null>(null);
+  const [isLoading, setIsLoading] = useState(false)
 
   //Pegar os animes com o nome passado no import, o valor do input
   //foi atribuido ao estado "search".
@@ -37,12 +38,16 @@ export default function AnimeList({ animes }: AnimeListProps) {
   //estiver preenchido com alguma informação que o usuário digitou no input e enviou para a
   //função "handleSubmit"  
   useEffect(() => {
+    setIsLoading(true)
     api.get(`anime?q=${search}&order_by=mal_id`)
     .then(response => {
       if(search != null) setAnimeData(response.data)
     })
     .catch(err => {
       console.log(err)
+    })
+    .finally(() => {
+      setIsLoading(false)
     })
   }, [search])
 
@@ -52,25 +57,14 @@ export default function AnimeList({ animes }: AnimeListProps) {
     anime.title.toLowerCase().includes(search)
   );
 
-  //função responsável por enviar o formulário e setar o valor do input dentro
-  //do estado "search"
-  function handleSubmit(e: FormEvent) {
-    e.preventDefault();
-
-    setSearch(value);
-  }
-
   return (
     <div className={styles.listContainer}>
-      <form onSubmit={handleSubmit}>
-        <h1>Procurar anime</h1>
-
-        <SearchBox setValue={setValue} />
-      </form>
+      <h1>Procurar anime</h1>
+      
+      <SearchBox setSearch={setSearch} isLoading={isLoading} />
 
       <div className={styles.listContent}>
         <ul>
-        
           {/* se tiver "animes" e "filteredAnimes" for vazio, então vai ser renderizado o primeiro 
               cenário, caso contrário, o segundo será renderizado com os animes filtrados pelo campo 
               de busca
@@ -103,7 +97,7 @@ export default function AnimeList({ animes }: AnimeListProps) {
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const response = await api.get(`anime`);
+  const response = await api.get(`anime?order_by=rank`);
 
   const animes = response.data.data.map((anime) => {
     return {

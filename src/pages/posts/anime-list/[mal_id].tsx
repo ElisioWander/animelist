@@ -5,54 +5,48 @@ import { api } from "../../../services/axios";
 import stylesAnimePage from "./stylesAnimePage.module.scss";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { VideoModal } from "../../../Components/Modal/VideoModal";
+import { Spinner } from "../../../Components/Spinner/Index";
 
-type GenreAnime = {
-  id: string;
-  name: string;
+type AnimePageProps = {
+  anime: {
+    id: string;
+    title: string;
+    poster: string;
+    showType: string;
+    episodes: number;
+    status: string;
+    youtubeVideo: string;
+    score: number;
+    description: string;
+    year: number;
+    season: string
+    ageRating: string;
+    genres: Array<{
+      id: string;
+      name: string;
+    }>,
+    studios: Array<{
+      id: string;
+      name: string;
+    }>
+  }
 }
 
-type Anime = {
-  id: string;
-  title: string;
-  poster?: string;
-  showType?: string;
-  episodes: string;
-  status?: string;
-  youtubeVideo?: string;
-  score?: string;
-  description?: string;
-  year?: string;
-  season?: string
-  ageRating?: string;
-}
+export default function AnimePage({ anime }: AnimePageProps) {
+  const [modalIsOpen, setModalIsOpen] = useState(false)
 
-interface AnimePageProps {
-  anime: Anime;
-  genres: GenreAnime[];
-}
-
-export default function AnimePage({ anime, genres }: AnimePageProps) {
-  const [wideVersion, setWideVersion] = useState<number| null>(null)
-
-  // useEffect(() => {
-  //   fetch("https://api.jikan.moe/v4/anime/1")
-  //   .then(response => response.json())
-  //   .then(response => console.log(response))
-  //   .catch(err => console.log(err))
-  // }, [])
-
-  useEffect(() => {
-    const screenWidth = document.body.clientWidth
-
-    setWideVersion(screenWidth)
-  }, [])
+  function handleOpenModal() {
+    setModalIsOpen(true)
+  }
 
   return (
+    <>
     <div className={stylesAnimePage.pageContainer}>
       <div
         style={{
           'backgroundImage': `linear-gradient(to bottom, transparent -50%, #121214 98%),
-            url(${ wideVersion < 771 ? anime.poster : anime.poster})`,
+            url(${anime.poster})`,
           'backgroundSize': 'cover',
           'backgroundRepeat': 'no-repeat',
           'backgroundPosition': 'center',
@@ -84,7 +78,7 @@ export default function AnimePage({ anime, genres }: AnimePageProps) {
 
             <p>{anime.description}</p>
 
-            <a href={`https://youtube.com/embed/${anime.youtubeVideo}`} target="_blank">
+            <a onClick={handleOpenModal}>
               <FaYoutube />
               Assistir Trailer
             </a>
@@ -99,27 +93,40 @@ export default function AnimePage({ anime, genres }: AnimePageProps) {
         <ul>
           <li><strong>Ano: </strong>{anime.year}</li>
           <li><strong>Temporada: </strong>{anime.season}</li>
-          <li><strong>Verção:</strong> {anime.showType}</li>
+          <li><strong>Verção: </strong>{anime.showType}</li>
           <li>
             <strong>Gênero: </strong>
-            { genres && genres.map(genre => (
+            {anime.genres.map(genre => (
               <span key={genre.id} >
                 <span>{genre.name}</span>
               </span>
-            )) }
+            ))}
           </li>
-          <li><strong>Estúdio: </strong>UFOTABLE</li>
+          <li>
+            <strong>Estúdio: </strong>
+              { anime.studios.map(studio => (
+                <span key={studio.id} >
+                  <span>{studio.name}</span>
+                </span>
+              )) }
+          </li>
           <li><strong>Censura: </strong>{anime.ageRating}</li>
         </ul>
 
         <ul>
-          
-          <li><strong>Nota:</strong> {anime.score}</li>
-          <li><strong>Episódios:</strong> {anime.episodes}</li>
+          <li><strong>Nota: </strong>{anime.score}</li>
+          <li><strong>Episódios: </strong>{anime.episodes}</li>
           <li><strong>Status: </strong>{anime.status}</li>
         </ul>
       </main>
     </div>
+
+    <VideoModal 
+      modalIsOpen={modalIsOpen}
+      setModalIsOpen={setModalIsOpen}
+      youtubeVideo={anime.youtubeVideo}
+    />
+    </>
   );
 }
 
@@ -138,11 +145,9 @@ export const getStaticProps:GetStaticProps = async ({params}) => {
   const animesResponse = await api.get(`anime/${mal_id}`)
   const animes = animesResponse.data
 
-  console.log(animes.data)
-
   const anime = {
     ...animes.data,
-    id: animes.data.mal_id,
+    id: animes.data.mal_id.toString(),
     title: animes.data.title,
     poster: animes.data.images.jpg.large_image_url,
     showType: animes.data.type,
@@ -153,8 +158,19 @@ export const getStaticProps:GetStaticProps = async ({params}) => {
     description: animes.data.synopsis.substring(0, 600)+'...',
     year: animes.data.year,
     season: animes.data.season,
-    posterLarge: animes.data.images.jpg.large_image_url,
     ageRating: animes.data.rating,
+    genres: animes.data.genres.map(genre => {
+      return {
+        id: genre.mal_id.toString(),
+        name: genre.name
+      }
+    }),
+    studios: animes.data.studios.map(studio => {
+      return {
+        id: studio.mal_id.toString(),
+        name: studio.name
+      }
+    })
   }
 
   return {

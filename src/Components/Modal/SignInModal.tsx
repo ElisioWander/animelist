@@ -5,14 +5,14 @@ import { FcGoogle } from 'react-icons/fc'
 
 import ReactModal from "react-modal";
 
-import styles from "./modal-styles.module.scss"
+import styles from "./signInModalStyles.module.scss"
 
-interface ModalProps {
+interface SignInModalProps {
   modalIsOpen: boolean;
   setModalIsOpen: React.Dispatch<SetStateAction<boolean>>
 }
 
-export function Modal({ modalIsOpen, setModalIsOpen }: ModalProps) {
+export function SignInModal({ modalIsOpen, setModalIsOpen }: SignInModalProps) {
   return (
     <ReactModal
       isOpen={modalIsOpen}

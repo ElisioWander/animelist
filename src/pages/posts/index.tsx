@@ -3,64 +3,64 @@ import { prismicClient } from "../../services/prismic";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
 
-import * as prismicH from '@prismicio/helpers'
+import * as prismicH from "@prismicio/helpers";
 import Link from "next/link";
 
 import styles from "./posts.module.scss";
-import { Modal } from "../../Components/Modal";
+import { SignInModal } from "../../Components/Modal/SignInModal";
+import { SearchBox } from "../../Components/Form/SearchBox";
 
 type Post = {
   slug: string;
   banner: string;
   title: string;
   summary: string;
-}
+};
 
 interface PostsProps {
-  posts: Post[],
+  posts: Post[];
 }
 
 export default function Posts({ posts }: PostsProps) {
-  const [modalIsOpen, setModalIsOpen] = useState(false)
-  const { data: session } = useSession()
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const { data: session } = useSession();
 
   function handleOpenModal() {
-    if(!session) {
-      setModalIsOpen(true)
+    if (!session) {
+      setModalIsOpen(true);
     } else {
-      return
+      return;
     }
   }
 
   return (
     <>
+      <div className={styles.searchBox} >
+        <SearchBox />
+      </div>
       <main className={styles.postsCard}>
-        { posts.map(post => (
-          <div className={styles.postCard}>
-            <div className={styles.cardImage}>
-              <img 
-                src={post.banner}
-                alt="bannner anime"
-              />
-            </div>
+        {posts.map((post) => (
+          <Link href={`/posts/${post.slug}`} key={post.slug}>
+            <a onClick={handleOpenModal}>
+              <div className={styles.postCard}>
+                <div className={styles.cardImage}>
+                  <img src={post.banner} alt="bannner anime" />
+                </div>
+                <div className={styles.hero}>
+                  <span>news</span>
 
-            <div className={styles.hero} >
-              <h1>{post.title}</h1>
-
-              <p>
-                {post.summary}
-              </p>
-
-              <Link href={`/posts/${post.slug}`} key={post.slug} >
-                <a onClick={handleOpenModal} >Continuar lendo</a>
-              </Link>
-
-            </div>
-          </div>
-        )) }
+                  <div className={styles.cardFooter} >
+                    <h1>{post.title}</h1>
+                    <div><span>há 10 dias . 5 min</span></div>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </Link>
+        ))}
       </main>
-        
-      <Modal modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen} />
+
+      <SignInModal modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen} />
     </>
   );
 }
@@ -68,19 +68,21 @@ export default function Posts({ posts }: PostsProps) {
 export const getStaticProps: GetStaticProps = async () => {
   const response = await prismicClient.getAllByType("post", {
     fetch: ["post.banner", "post.title", "post.sinopse"],
-    pageSize: 100
-  })
+    pageSize: 100,
+  });
 
-  const posts = response.map(post => {
+  const posts = response.map((post) => {
     return {
       slug: post.uid,
       banner: post.data.banner.url,
       title: prismicH.asText(post.data.title),
-      summary: post.data.sinopse.find(sinopse => sinopse.type === 'paragraph')?.text ?? "",
-    }
-  })
+      summary:
+        post.data.sinopse.find((sinopse) => sinopse.type === "paragraph")
+          ?.text ?? "",
+    };
+  });
 
   return {
-    props: { posts }
-  }
-}
+    props: { posts },
+  };
+};
