@@ -12,11 +12,13 @@ interface SignInModalProps {
   setModalIsOpen: React.Dispatch<SetStateAction<boolean>>
 }
 
+
 export function SignInModal({ modalIsOpen, setModalIsOpen }: SignInModalProps) {
   return (
     <ReactModal
       isOpen={modalIsOpen}
       onRequestClose={() => setModalIsOpen(false)}
+      ariaHideApp={false}
       overlayClassName={styles.reactModalOverlay}
       className={styles.reactModalContent}
     >

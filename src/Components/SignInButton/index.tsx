@@ -1,8 +1,7 @@
-import { FaSignInAlt, FaSignOutAlt } from "react-icons/fa";
+import { FaSignInAlt, FaPowerOff} from "react-icons/fa";
 import { useSession, signIn, signOut } from "next-auth/react";
 
 import styles from "./styles.module.scss";
-import { UserInfo } from "../UserInfo";
 
 export function SignInButton() {
   const { data: session } = useSession();
@@ -15,7 +14,7 @@ export function SignInButton() {
       className={styles.signOutButton}
       onClick={() => signOut()}
     >
-      <FaSignOutAlt color="#EBA417" />
+      <FaPowerOff color="#EBA417" />
     </button>
     </>
   ) : (

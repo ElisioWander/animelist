@@ -1,67 +1,68 @@
 .userInfoContainer {
-    //desabilitado para mobile
-    display: none;
+  //desabilitado para mobile
+  display: none;
 }
 
-@media(min-width: 771px) {
-    .userInfoContainer {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+@media (min-width: 771px) {
+  .userInfoContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-        span {
-            display: none;
-        }
+    span {
+      display: none;
+    }
+  }
+
+  .userProfilePhoto {
+    width: 32px;
+    height: 32px;
+
+    border-radius: 50%;
+    border: solid 1px var(--yellow-100);
+
+    position: relative;
+
+    img {
+      width: 100%;
+      height: 100%;
+
+      border-radius: 50%;
+    }
+  }
+
+  .signInSession {
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    button {
+      margin: 0;
     }
 
-    .userProfilePhoto {
-        width: 42px;
-        height: 42px;
-        
-        border-radius: 50%;
-        border: solid 1px var(--yellow-100);
+    > svg {
+      width: 32px;
+      height: 32px;
 
-        position: relative;
-        
-        img {
-            width: 100%;
-            height: 100%;
-            
-            
-            border-radius: 50%;
-        }
+      position: absolute;
+      right: 131px;
     }
-
-    .signInSession {
-        display: flex;
-        align-items: center;
-        position: relative;
-
-        button {
-            margin: 0;
-        }
-
-        > svg {
-            width: 32px;
-            height: 32px;
-
-            position: absolute;
-            right: 131px;
-        }
-    }
+  }
 }
 
-@media(min-width: 1024px) {
-    .userInfoContainer {
-        width: 248px;
+@media (min-width: 1024px) {
+  .userInfoContainer {
+    width: 270px;
 
-        > span {
-            display: block;
+    > span {
+      display: block;
 
-            font-weight: bold;
-            font-size: 0.8rem;
+      font-weight: normal;
+      font-size: 0.88rem;
+      line-height: 34px;
+      letter-spacing: 0.3px;
 
-            margin-right: 6px;
-        }
+      margin-left: 8px;
     }
+  }
 }

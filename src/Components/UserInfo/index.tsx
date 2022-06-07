@@ -9,11 +9,11 @@ export function UserInfo() {
 
   return session ? (
     <div className={styles.userInfoContainer}>
-      <span>{session.user.name}</span>
       <div className={styles.userProfilePhoto}>
         <img src={session.user.image} alt="foto de perfil" />
       </div>
-
+      <span>{session.user.name}</span>
+    
       <SignInButton />
     </div>
   ) : (
