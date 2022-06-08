@@ -155,7 +155,7 @@ export const getStaticProps:GetStaticProps = async ({params}) => {
     status: animes.data.status,
     youtubeVideo: animes.data.trailer.youtube_id,
     score: animes.data.score,
-    description: animes.data.synopsis.substring(0, 600)+'...',
+    description: animes.data.synopsis?.substring(0, 600)+'...',
     year: animes.data.year,
     season: animes.data.season,
     ageRating: animes.data.rating,

@@ -16,7 +16,6 @@ export function VideoModal({
   setModalIsOpen,
   youtubeVideo,
 }: SignInModalProps) {
-
   return (
     <ReactModal
       isOpen={modalIsOpen}
@@ -26,11 +25,11 @@ export function VideoModal({
     >
       <div className={styles.videoCard}>
         <FiX onClick={() => setModalIsOpen(false)} />
-          <iframe
-            src={`https://youtube.com/embed/${youtubeVideo}`}
-            frameBorder="0"
-          />  
-        </div>
+        <iframe
+          src={`https://youtube.com/embed/${youtubeVideo}`}
+          frameBorder="0"
+        />
+      </div>
     </ReactModal>
   );
 }

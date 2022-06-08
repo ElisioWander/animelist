@@ -1,57 +1,58 @@
-.signInButton, .signOutButton {
-    height: 3rem;
-    width: 140px;
+.signInButton,
+.signOutButton {
+  height: 3rem;
+  width: 140px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    cursor: pointer;
+  cursor: pointer;
 
-    padding: 0 1.5rem;
+  padding: 0 1.5rem;
 
-    border: none;
-    border-radius: 3rem;
+  border: none;
+  border-radius: 3rem;
 
-    font-weight: bold;
+  font-weight: bold;
 
-    color: var(--white);
-    background-color: transparent;
+  color: var(--white);
+  background-color: transparent;
 
-    svg {
-        width: 20px;
-        height: 20px;
-    }
+  svg {
+    width: 20px;
+    height: 20px;
+  }
 
-    svg:first-child {
-        margin-right: 1rem;
-    }
+  svg:first-child {
+    margin-right: 1rem;
+  }
 
-    &:hover {
-        filter: brightness(0.8);
-    }
+  &:hover {
+    filter: brightness(0.8);
+  }
 
-    transition: filter 0.2s;
+  transition: filter 0.2s;
 }
 
 .signOutButton {
-    width: 42px;
-    padding: 0;
+  width: 42px;
+  padding: 0;
 
-    margin-left: 1rem;
+  margin-left: 1rem;
 
-    svg:first-child {
-        width: 100%;
-        margin: 0 0 0 0.5rem;
-    }
+  svg:first-child {
+    width: 100%;
+    margin: 0 0 0 0.5rem;
+  }
 }
 
-@media(min-width: 768px) {
-    .signInButton {
-        margin-left: 6rem;
-    }
+@media (min-width: 768px) {
+  .signInButton {
+    margin-left: 6rem;
+  }
 
-    .signOutButton {
-        margin: 0;
-    }
+  .signOutButton {
+    margin: 0;
+  }
 }
