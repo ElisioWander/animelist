@@ -1,7 +1,7 @@
-import { GetServerSideProps } from "next";
 import Link from "next/link";
-import { FormEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { SearchBox } from "../../../Components/Form/SearchBox";
+import { Pagination } from "../../../Components/Pagination";
 import { Spinner } from "../../../Components/Spinner/Index";
 import { api } from "../../../services/axios";
 
@@ -19,18 +19,28 @@ type AnimeInfoData = {
   }>;
 };
 
+
 export default function AnimeList() {
   const [search, setSearch] = useState<null | string>(null);
   const [searchAnimes, setSearchAnimes] = useState<AnimeInfoData | null>(null);
   const [animes, setAnimes] = useState<AnimeInfoData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<Error>();
+  const [total, setTotal] = useState<number>()
+  const [page, setPage] = useState(1)
+  const [filteredTotalPage, setFilteredTotalPage] = useState<number>()
 
   //pegar os animes assim que o cliente acessar a página
   useEffect(() => {
     api
-      .get(`anime?order_by=rank`)
+      .get(`anime?page=${page}`)
       .then((response) => {
+        const page = response.data.pagination.current_page
+
+        const total = response.data.pagination.items?.total
+        
+        setTotal(total)
+        setPage(page)
         setAnimes(response.data);
       })
       .catch((err) => {
@@ -39,7 +49,7 @@ export default function AnimeList() {
       .finally(() => {
         setIsLoading(false);
       });
-  }, []);
+  }, [page]);
 
   //Pegar os animes com o nome passado no import, o valor do input
   //foi atribuido ao estado "search".
@@ -49,8 +59,14 @@ export default function AnimeList() {
   useEffect(() => {
     setIsLoading(true);
     api
-      .get(`anime?q=${search}&order_by=mal_id`)
+      .get(`anime?q=${search}&order_by=mal_id&page=${page}`)
       .then((response) => {
+        const page = response.data.pagination.current_page
+        const filteredTotalPage = response.data.pagination.items.total
+
+        setPage(page)
+        setFilteredTotalPage(filteredTotalPage)
+
         if (search != null) {
           setSearchAnimes(response.data);
         }
@@ -61,7 +77,7 @@ export default function AnimeList() {
       .finally(() => {
         setIsLoading(false);
       });
-  }, [search]);
+  }, [search, page]);
 
   //fazendo a filtragem dos dados, passando como parâmetro o "search", ou seja, os dados
   //que foram enviados atravez da função "handleSubmit"
@@ -73,7 +89,7 @@ export default function AnimeList() {
     <div className={styles.listContainer}>
       <h1>Procurar anime</h1>
 
-      <SearchBox setSearch={setSearch} />
+      <SearchBox setSearch={setSearch} onPageChange={setPage} />
 
       <div className={styles.listContent}>
         {isLoading ? (
@@ -110,6 +126,22 @@ export default function AnimeList() {
           </ul>
         )}
       </div>
+
+      {!filteredAnime && animes ? (
+        <Pagination 
+        totalCountOfRegisters={total}
+        currentPage={page}
+        registerPerPage={20}
+        onPageChange={setPage}
+      />
+      ): filteredAnime && (
+        <Pagination 
+        totalCountOfRegisters={filteredTotalPage}
+        currentPage={page}
+        registerPerPage={20}
+        onPageChange={setPage}
+      />
+      )}
     </div>
   );
 }

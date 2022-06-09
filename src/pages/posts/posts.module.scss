@@ -82,7 +82,7 @@
 
   .hero {
     width: 100%;
-    max-height: 194px;
+    height: 194px;
 
     padding: 1.5rem 2rem;
 
@@ -121,9 +121,9 @@
         padding-top: 1rem;
 
         span {
-          font-size: 0.9rem;
+          font-size: 0.8rem;
           font-size: 500;
-          color: var(--gray-300);
+          color: var(--gray-500);
         }
       }
     }

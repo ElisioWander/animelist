@@ -8,14 +8,16 @@
 }
 
 .spinnerContainer {
+  height: 100vh;
+
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .loadingSpinner {
-  width: 24px;
-  height: 24px;
+  width: 54px;
+  height: 54px;
 
   border: 10px solid #f3f3f3;
   border-top: 10px solid #383636; /* Blue */

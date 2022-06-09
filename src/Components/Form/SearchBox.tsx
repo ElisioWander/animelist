@@ -7,9 +7,10 @@ import styles from "./styles.module.scss";
 interface SearchBoxProps {
   setSearch?: Dispatch<SetStateAction<string>>;
   isLoading?: boolean;
+  onPageChange: (page: number) => void;
 }
 
-export function SearchBox({ setSearch, isLoading }: SearchBoxProps) {
+export function SearchBox({ setSearch, isLoading, onPageChange }: SearchBoxProps) {
   const [value, setValue] = useState<null | string>(null);
 
   //função responsável por enviar o formulário e setar o valor do input dentro
@@ -18,6 +19,7 @@ export function SearchBox({ setSearch, isLoading }: SearchBoxProps) {
     e.preventDefault();
 
     setSearch(value);
+    onPageChange(1)
   }
 
   return (

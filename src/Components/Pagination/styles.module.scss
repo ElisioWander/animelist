@@ -9,5 +9,12 @@
 
 .paginationContent {
     display: flex;
+    align-items: center;
     gap: 0.5rem;
+
+    span {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 }
