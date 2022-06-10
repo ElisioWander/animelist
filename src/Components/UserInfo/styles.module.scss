@@ -19,7 +19,7 @@
     height: 32px;
 
     border-radius: 50%;
-    border: solid 1px var(--yellow-100);
+    border: solid 2px var(--yellow-100);
 
     position: relative;
 
@@ -63,6 +63,8 @@
       letter-spacing: 0.3px;
 
       margin-left: 8px;
+
+      color: var(--gray-100);
     }
   }
 }

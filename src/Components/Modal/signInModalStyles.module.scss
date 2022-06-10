@@ -17,9 +17,9 @@
 
 .reactModalContent {
   width: 90%;
-  max-width: 576px;
+  max-width: 350px;
 
-  padding: 3rem;
+  padding: 2rem;
 
   border-radius: 0.3rem;
 
@@ -53,16 +53,23 @@
   }
 
   span {
-    display: block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
     margin-bottom: 1rem;
 
-    font-size: 1.5rem;
-    font-weight: bold;
+    font-size: 2.2rem;
+    font-weight: 500;
     text-align: center;
 
-    color: var(--yellow-100);
+    color: var(--gray-100);
 
     transition: font-size 0.2s linear;
+
+    > span {
+      color: var(--yellow-100);
+    }
   }
 
   span:last-of-type {
@@ -76,19 +83,31 @@
     display: flex;
     flex-direction: column;
     label {
-      display: block;
+      display: flex;
+      font-weight: normal;
+      letter-spacing: 0.3px;
+      font-size: 1rem;
 
       margin-bottom: 0.4rem;
+
+      color: var(--gray-300);
 
       transition: font-size 0.2s linear;
     }
 
     input {
       margin-bottom: 0.4rem;
-      padding: 0.5rem 1rem;
+      padding: 0.8rem 1rem;
 
-      border: none;
       border-radius: 0.3rem;
+      border: solid 1px var(--gray-800);
+      box-shadow: #000 1px 1px 4px -2px;
+
+      background-color: transparent;
+
+      &::placeholder {
+        color: var(--gray-800);
+      }
     }
 
     input:first-of-type {
@@ -97,7 +116,7 @@
 
     button {
       margin-top: 0.7rem;
-      padding: 0.5rem 1rem;
+      padding: 0.8rem 1rem;
 
       font-weight: bold;
 
@@ -105,7 +124,7 @@
       border-radius: 0.3rem;
 
       color: var(--white);
-      background-color: #eba417;
+      background-color: var(--gray-800);
 
       transition: all 0.2s;
 
@@ -124,47 +143,43 @@
 
     border-radius: 50%;
 
-    background-color: var(--gray-100);
+    background-color: var(--gray-300);
   }
 
   .socialSignInContent {
     label {
+      width: 232px;
+
       display: flex;
       align-items: center;
       justify-content: center;
 
       margin-bottom: 0.5rem;
+      padding: 0.6rem 1rem;
+
+      border-radius: 5px;
+      border: thin solid #888;
+      box-shadow: 1px 1px 1px -1px grey;
+
 
       font-size: 1rem;
       font-weight: bold;
       text-align: center;
 
+      color: var(--gray-800);
+      background-color: var(--white);
+
       svg {
         margin-right: 8px;
       }
-    }
 
-    //signInButton
-    button {
-      margin: 0;
-    }
-  }
-}
-
-@media (min-width: 481px) {
-  .signInContent {
-    span {
-      font-size: 1.8rem;
-    }
-  }
-
-  .traditionalSignInContent {
-    label {
-      font-size: 1.2rem;
-    }
-
-    button {
-      font-size: 1.2rem;
+      //signInButton
+      button {
+        margin: 0;
+        opacity: 1;
+        position: absolute;
+        opacity: 0;
+      }
     }
   }
 }

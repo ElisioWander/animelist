@@ -1,4 +1,3 @@
-import { useSession } from "next-auth/react";
 import { useMenuToggle } from "../../Context/menuContext";
 import { ActiveLink } from "../ActiveLink";
 import { Logo } from "../Logo/index";
@@ -8,8 +7,6 @@ import { UserInfo } from "../UserInfo";
 import styles from "./styles.module.scss";
 
 export function Header() {
-  const { data: session } = useSession();
-
   const { activeMenu, handleOpenMenuToggle } = useMenuToggle()
 
   return (

@@ -33,7 +33,7 @@ export default function AnimeList() {
   //pegar os animes assim que o cliente acessar a página
   useEffect(() => {
     api
-      .get(`anime?page=${page}`)
+      .get(`anime?page=${page}&type=tv`)
       .then((response) => {
         const page = response.data.pagination.current_page
 

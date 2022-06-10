@@ -1,10 +1,11 @@
 import { prismicClient } from "../../services/prismic";
 import { useEffect, useState } from "react";
-import { useSession } from "next-auth/react";
+import { getSession, useSession } from "next-auth/react";
 import { SignInModal } from "../../Components/Modal/SignInModal";
 import { Pagination } from "../../Components/Pagination";
 import { Spinner } from "../../Components/Spinner/Index";
 import { format } from 'date-fns'
+import { GetServerSideProps, GetStaticProps } from "next";
 
 import * as prismicH from "@prismicio/helpers";
 import Link from "next/link";
@@ -12,12 +13,14 @@ import Link from "next/link";
 import styles from "./posts.module.scss";
 
 
+
 type Post = Array<{
   slug: string;
   banner: string;
   title: string;
-  summary: string;
   publicationDate: string;
+  content: string;
+  sinopse: string;
 }>
 
 export default function Posts() {
@@ -47,6 +50,8 @@ export default function Posts() {
           banner: post.data.banner.url,
           title: prismicH.asText(post.data.title),
           publicationDate: format(new Date(post.first_publication_date), 'dd / MM / yyy'),
+          content: prismicH.asText(post.data.content),
+          sinopse:prismicH.asText(post.data.sinopse),
           summary:
             post.data.sinopse.find((sinopse) => sinopse.type === "paragraph")
               ?.text ?? "",
@@ -70,7 +75,7 @@ export default function Posts() {
       return;
     }
   }
-
+  
   return (
     <>
     {isLoading && <Spinner />}
@@ -79,7 +84,7 @@ export default function Posts() {
         {posts &&
           posts.map((post) => (
             <Link href={`/posts/${post.slug}`} key={post.slug}>
-              <a onClick={handleOpenModal}>
+              <a onClick={handleOpenModal} >
                 <div className={styles.postCard}>
                   <div className={styles.cardImage}>
                     <img src={post.banner} alt="bannner anime" />
@@ -109,4 +114,11 @@ export default function Posts() {
       <SignInModal modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen} />
     </>
   );
+}
+
+export const getServerSideProps: GetServerSideProps = async (req ) => {
+
+  return {
+    props: {}
+  }
 }

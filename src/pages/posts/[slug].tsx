@@ -1,8 +1,8 @@
 import { GetServerSideProps } from 'next'
 import { prismicClient } from '../../services/prismic'
 import { getSession } from 'next-auth/react'
+import { format } from 'date-fns'
 
-import Link from 'next/link'
 import * as prismicH from '@prismicio/helpers'
 
 import styles from './post.module.scss' 
@@ -19,6 +19,7 @@ type Post = {
   };
   content: string;
   video: string;
+  date: string;
 }
 
 interface PostProps {
@@ -26,6 +27,11 @@ interface PostProps {
 }
 
 export default function Post({ post }: PostProps) {
+  const contentText = post.content + post.sinopse
+  const wordCount = contentText.split(" ").length
+
+  const readTime = Math.ceil(wordCount / 200)
+
   return (
     <div className={styles.postContainer} >
       <div className={styles.banner} >
@@ -37,6 +43,11 @@ export default function Post({ post }: PostProps) {
 
       <main className={styles.hero} >
         <h1>{post.title}</h1>
+
+        <time>
+          <span>{`${readTime} min`} de leitura</span>
+          <span>{post.date}</span>
+        </time>
 
         <section className={styles.animeInfo} >
           { post.sinopse && (
@@ -84,6 +95,8 @@ export const getServerSideProps: GetServerSideProps = async ({ params, req }) =>
 
   const response = await prismicClient.getByUID("post", String(slug))
 
+  console.log(response)
+
   const post = {
     slug,
     banner: response.data.banner.url,
@@ -95,14 +108,16 @@ export const getServerSideProps: GetServerSideProps = async ({ params, req }) =>
       studio: prismicH.asText(response.data.studio)
     },
     content: prismicH.asText(response.data.content),
-    video: response.data?.video.url || null
+    video: response.data?.video.url || null,
+    date: format(new Date(response.first_publication_date), 'dd / MM / yyy')
   }
+
 
   //redirecionar para a página de fazer login caso a pessoa não esteja logada
   if(!session) {
     return {
       redirect: {
-        destination: '/posts',
+        destination: `/posts`,
         permanent: false
       }
     }

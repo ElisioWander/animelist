@@ -51,6 +51,28 @@
     transition: font-size 0.2s linear;
   }
 
+  time {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0rem 0 3rem 0;
+    margin-bottom: 1rem;
+
+    span {
+      width: 124px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-size: 0.9rem;
+      font-weight: bold;
+
+      color: var(--gray-300);
+    }
+  }
+
   .animeInfo {
     h3 {
       font-size: 1.8rem;
