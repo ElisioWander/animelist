@@ -1,64 +1,58 @@
-import { Spinner } from '../Components/Spinner/Index';
-import { useFetch } from '../hooks/useFetch'
-import { FaArrowLeft, FaArrowRight } from 'react-icons/fa'
+import { getHomeList } from "../JikanAPI";
 
-import styles from './home.module.scss'
+import styles from "./home.module.scss";
+import { useEffect, useState } from "react";
+import { AnimeRow } from "../Components/AnimeRow";
 
-type AnimeInfoData = {
-  mal_id: string;
+type AnimeListData = Array<{
   title: string;
-  images: {
-    jpg: {
-      image_url: string;
-    }
-  }
-};
+  items: Array<{
+    mal_id: number;
+    title: string;
+    images: {
+      jpg: {
+        image_url: string;
+      };
+    };
+  }>;
+}>;
 
 export default function Home() {
-  const { data: seasonsNow } = useFetch<AnimeInfoData[]>(`seasons/now`)
-  const { data: topAnimes } = useFetch<AnimeInfoData[]>(`top/anime`)
-  const { data: upcoming } = useFetch<AnimeInfoData[]>(`seasons/upcoming`)
+  const [animeList, setAnimeList] = useState<AnimeListData | null>(null);
+
+  useEffect(() => {
+    (async function () {
+      let list = await getHomeList();
+
+      setAnimeList(list);
+    })();
+  }, []);
 
   return (
-    <div className={styles.homeContainer} >
-      <section className={styles.headerSection} >
-        <img src="https://pbs.twimg.com/media/EVP0f8iUwAIjf4w?format=jpg&name=4096x4096" alt="" />
+    <div className={styles.homeContainer}>
+      <section className={styles.headerSection}>
+        <img
+          src="https://pbs.twimg.com/media/EVP0f8iUwAIjf4w?format=jpg&name=4096x4096"
+          alt=""
+        />
 
-        <div className={styles.headerSectionContent} >
+        <div className={styles.headerSectionContent}>
           <h1>Anime title</h1>
           <span>anime description</span>
 
-          <a href="/">
-            details
-          </a>
+          <a href="/">details</a>
         </div>
       </section>
 
-      <div className={styles.cardContainer} >
-        <div className={styles.cardContent} >
-          <ul className="slider" >
-            <FaArrowLeft className={styles.arrowLeft} fontSize={24} />
-            { seasonsNow && seasonsNow.map(anime => (
-              <li>
-                <img key={anime.mal_id} src={anime.images.jpg.image_url} alt="poster anime" />
-              </li> 
-            )) }
-            <FaArrowRight fontSize={24} />
-          </ul>
-          <ul>
-            <FaArrowLeft className={styles.arrowLeft} fontSize={24} />
-            <FaArrowRight fontSize={24} />
-            { seasonsNow && seasonsNow.map(anime => (
-              <li>
-                <img key={anime.mal_id} src={anime.images.jpg.image_url} alt="poster anime" />
-              </li> 
-            )) }
-          </ul>
-        </div>
+      <div className={styles.listContainer}>
+        {animeList && 
+          animeList.map((animeList, key) => (
+            <div key={key} >
+              <AnimeRow animeList={animeList.items} title={animeList.title} />
+            </div>
+          ))
+        }
       </div>
     </div>
-  )
+  );
 }
-
-
-

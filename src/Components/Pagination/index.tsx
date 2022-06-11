@@ -21,7 +21,7 @@ function generatePagesArray(from: number, to: number) {
 
 export function Pagination({ 
   totalCountOfRegisters,
-  registerPerPage,
+  registerPerPage = 6,
   currentPage = 1,
   onPageChange
  }: PaginationProps) {
