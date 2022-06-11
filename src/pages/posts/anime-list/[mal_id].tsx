@@ -4,9 +4,8 @@ import { api } from "../../../services/axios";
 
 import stylesAnimePage from "./stylesAnimePage.module.scss";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { VideoModal } from "../../../Components/Modal/VideoModal";
-import { Spinner } from "../../../Components/Spinner/Index";
 
 type AnimePageProps = {
   anime: {
@@ -43,16 +42,9 @@ export default function AnimePage({ anime }: AnimePageProps) {
   return (
     <>
     <div className={stylesAnimePage.pageContainer}>
-      <div
-        style={{
-          'backgroundImage': `linear-gradient(to bottom, transparent -50%, #121214 98%),
-            url(${anime.poster})`,
-          'backgroundSize': 'cover',
-          'backgroundRepeat': 'no-repeat',
-          'backgroundPosition': 'center',
-        }}
-        className={stylesAnimePage.pageContent}
-      >
+      <div className={stylesAnimePage.pageContent}>
+        <img src={anime.poster} alt="" />
+
         <Link href={`/posts/anime-list`} >
           <a>
             <FaArrowCircleLeft />
@@ -72,7 +64,7 @@ export default function AnimePage({ anime }: AnimePageProps) {
             <ul>
               <li>Verção - {anime.showType}</li>
               <li>Episódios - {anime.episodes}</li>
-              <li>Status - {anime.status}</li>
+              <li>Ano - {anime.year}</li>
               <li>Nota - {anime.score}</li>
             </ul>
 
@@ -155,7 +147,7 @@ export const getStaticProps:GetStaticProps = async ({params}) => {
     status: animes.data.status,
     youtubeVideo: animes.data.trailer.youtube_id,
     score: animes.data.score,
-    description: animes.data.synopsis?.substring(0, 600)+'...',
+    description: animes.data.synopsis?.substring(0, 400)+'...',
     year: animes.data.year,
     season: animes.data.season,
     ageRating: animes.data.rating,

@@ -1,187 +1,39 @@
 .homeContainer {
   width: 100%;
-  height: calc(100vh - 5rem);
-
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-
-  background-image: linear-gradient(to bottom, transparent -50%, #121214 98%),
-    url("/images/home-wallpaper.jpg");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-}
-
-.hero {
-  width: 720px;
-
-  padding: 2rem;
+  height: 100%;
 
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-
-  transition: margin 0.2s linear;
-
-  p {
-    font-size: 1.3rem;
-    font-family: "Roboto", sans-serif;
-    font-weight: 500;
-
-    margin-bottom: 2rem;
-
-    > span {
-      color: var(--yellow-100);
-    }
-
-    transition: font-size 0.2s linear;
-  }
-
-  > div {
-    display: block;
-
-    margin-bottom: 2rem;
-
-    font-size: 1rem;
-    font-weight: bold;
-
-    color: var(--white);
-
-    transition: font-size 0.2s linear;
-
-    span {
-      color: var(--yellow-100);
-    }
-  }
-
-  h1 {
-    font-size: 2.4rem;
-    font-family: "Manrope", sans-serif;
-    font-weight: bold;
-
-    margin: 0 0 2rem 0;
-
-    line-height: 3rem;
-
-    span {
-      color: var(--yellow-100);
-    }
-
-    transition: font-size 0.2s linear;
-  }
-
-  a {
-    width: 90%;
-
-    text-align: center;
-    align-self: center;
-
-    padding: 1rem;
-
-    border-radius: 100px;
-
-    font-size: 1.5rem;
-    font-weight: bold;
-
-    color: var(--white);
-
-    background-color: var(--yellow-100);
-
-    transition: all 0.2s;
-
-    &:hover {
-      filter: brightness(0.8);
-    }
-  }
-
-  button {
-    display: none;
-  }
 }
 
-@media (min-width: 344px) {
-  .hero {
-    h1 {
-      font-size: 2.8rem;
-    }
-  }
-}
+.headerSection {
+  width: 100%;
+  height: 380px;
 
-@media (min-width: 392px) {
-  .hero {
-    h1 {
-      font-size: 2.9rem;
-    }
-  }
-}
+  position: relative;
+  
+  background: linear-gradient(0deg, #121214 0, rgba(32, 33, 37, 0) 80%);
 
-@media (min-width: 481px) {
-  .hero {
-    a {
-      width: 50%;
-      align-self: flex-start;
-    }
+  img {
+    width: 100%;
+    height: 100%;
 
-    margin-left: 3rem;
-  }
-}
+    position: absolute;
 
-@media (min-width: 651px) {
-  .hero {
-    > div {
-      font-size: 1.3rem;
-    }
+    object-fit: cover;
 
-    margin-left: 5rem;
-  }
-}
+    z-index: -10;
 
-//Tablet
-@media (min-width: 771px) {
-  .hero {
-    > div {
-      font-size: 1.5rem;
-    }
-
-    a {
-      margin: 0;
-    }
-
-    &:last-child button {
-      display: none;
-    }
-  }
-}
-
-//desktop
-@media (min-width: 1024px) {
-  .homeContainer {
-    align-items: right;
-    justify-content: right;
+    filter: brightness(0.8);
   }
 
-  .hero {
-    width: 920px;
-    margin: 0 auto;
+  .headerSectionContent {
+    display: flex;
+    flex-direction: column;
+    height: 90%;
 
-    align-items: flex-start;
+    justify-content: flex-end;
 
-    padding: 2rem;
-
-    h1 {
-      font-size: 3.5rem;
-
-      line-height: 4rem;
-    }
-
-    p {
-      font-size: 1.6rem;
-    }
-
-    a {
-      width: 320px;
-    }
+    padding: 1.3rem;
   }
 }

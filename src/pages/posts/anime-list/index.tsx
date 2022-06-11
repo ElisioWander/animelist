@@ -19,28 +19,24 @@ type AnimeInfoData = {
   }>;
 };
 
-
 export default function AnimeList() {
   const [search, setSearch] = useState<null | string>(null);
   const [searchAnimes, setSearchAnimes] = useState<AnimeInfoData | null>(null);
   const [animes, setAnimes] = useState<AnimeInfoData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<Error>();
-  const [total, setTotal] = useState<number>()
-  const [page, setPage] = useState(1)
-  const [filteredTotalPage, setFilteredTotalPage] = useState<number>()
+  const [total, setTotal] = useState<number>();
+  const [page, setPage] = useState(1);
+  const [perPage, setPerPage] = useState<number>(20)
+  const [filteredTotalPage, setFilteredTotalPage] = useState<number>();
 
   //pegar os animes assim que o cliente acessar a página
   useEffect(() => {
     api
-      .get(`anime?page=${page}&type=tv`)
+      .get(`anime?page=${page}&limit=${perPage}&type=tv&order_by=title`)
       .then((response) => {
-        const page = response.data.pagination.current_page
-
-        const total = response.data.pagination.items?.total
-        
-        setTotal(total)
-        setPage(page)
+        const total = response.data.pagination.items?.total;
+        setTotal(total);
         setAnimes(response.data);
       })
       .catch((err) => {
@@ -59,15 +55,15 @@ export default function AnimeList() {
   useEffect(() => {
     setIsLoading(true);
     api
-      .get(`anime?q=${search}&order_by=mal_id&page=${page}`)
+      .get(`anime?q=${search}&order_by=score&page=${page}&limit=${perPage}`)
       .then((response) => {
-        const page = response.data.pagination.current_page
-        const filteredTotalPage = response.data.pagination.items.total
-
-        setPage(page)
-        setFilteredTotalPage(filteredTotalPage)
+        const page = response.data.pagination.current_page;
+        //todos os dados que virão na requisição após a busca dos dados
+        const filteredTotalPage = response.data.pagination.items.total;
 
         if (search != null) {
+          setPage(page);
+          setFilteredTotalPage(filteredTotalPage);
           setSearchAnimes(response.data);
         }
       })
@@ -128,19 +124,21 @@ export default function AnimeList() {
       </div>
 
       {!filteredAnime && animes ? (
-        <Pagination 
-        totalCountOfRegisters={total}
-        currentPage={page}
-        registerPerPage={20}
-        onPageChange={setPage}
-      />
-      ): filteredAnime && (
-        <Pagination 
-        totalCountOfRegisters={filteredTotalPage}
-        currentPage={page}
-        registerPerPage={20}
-        onPageChange={setPage}
-      />
+        <Pagination
+          totalCountOfRegisters={total}
+          currentPage={page}
+          registerPerPage={perPage}
+          onPageChange={setPage}
+        />
+      ) : (
+        filteredAnime && (
+          <Pagination
+            totalCountOfRegisters={filteredTotalPage}
+            currentPage={page}
+            registerPerPage={perPage}
+            onPageChange={setPage}
+          />
+        )
       )}
     </div>
   );

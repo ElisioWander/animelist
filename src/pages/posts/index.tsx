@@ -1,18 +1,13 @@
 import { prismicClient } from "../../services/prismic";
 import { useEffect, useState } from "react";
-import { getSession, useSession } from "next-auth/react";
-import { SignInModal } from "../../Components/Modal/SignInModal";
 import { Pagination } from "../../Components/Pagination";
 import { Spinner } from "../../Components/Spinner/Index";
 import { format } from 'date-fns'
-import { GetServerSideProps, GetStaticProps } from "next";
 
 import * as prismicH from "@prismicio/helpers";
 import Link from "next/link";
 
 import styles from "./posts.module.scss";
-
-
 
 type Post = Array<{
   slug: string;
@@ -24,13 +19,10 @@ type Post = Array<{
 }>
 
 export default function Posts() {
-  const [modalIsOpen, setModalIsOpen] = useState(false);
   const [posts, setPosts] = useState<Post>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState(1)
-
-  const { data: session } = useSession();
 
   useEffect(() => {
     (async function () {
@@ -65,16 +57,6 @@ export default function Posts() {
       setIsLoading(false)
     })();
   }, [page]);
-
-  //se o usuário não tiver uma sessão ativa, então, será chamado um modal
-  //para que ele possa fazer a autenticação e acessar o post desejado
-  function handleOpenModal() {
-    if (!session) {
-      setModalIsOpen(true);
-    } else {
-      return;
-    }
-  }
   
   return (
     <>
@@ -84,7 +66,7 @@ export default function Posts() {
         {posts &&
           posts.map((post) => (
             <Link href={`/posts/${post.slug}`} key={post.slug}>
-              <a onClick={handleOpenModal} >
+              <a>
                 <div className={styles.postCard}>
                   <div className={styles.cardImage}>
                     <img src={post.banner} alt="bannner anime" />
@@ -110,15 +92,6 @@ export default function Posts() {
         currentPage={page}
         onPageChange={setPage}
       />
-
-      <SignInModal modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen} />
     </>
   );
-}
-
-export const getServerSideProps: GetServerSideProps = async (req ) => {
-
-  return {
-    props: {}
-  }
 }

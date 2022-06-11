@@ -1,6 +1,5 @@
 import { GetServerSideProps } from 'next'
 import { prismicClient } from '../../services/prismic'
-import { getSession } from 'next-auth/react'
 import { format } from 'date-fns'
 
 import * as prismicH from '@prismicio/helpers'
@@ -88,9 +87,7 @@ export default function Post({ post }: PostProps) {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ params, req }) => {
-  const session = await getSession({req})
-
+export const getServerSideProps: GetServerSideProps = async ({params}) => {
   const { slug } = params
 
   const response = await prismicClient.getByUID("post", String(slug))
@@ -110,17 +107,6 @@ export const getServerSideProps: GetServerSideProps = async ({ params, req }) =>
     content: prismicH.asText(response.data.content),
     video: response.data?.video.url || null,
     date: format(new Date(response.first_publication_date), 'dd / MM / yyy')
-  }
-
-
-  //redirecionar para a página de fazer login caso a pessoa não esteja logada
-  if(!session) {
-    return {
-      redirect: {
-        destination: `/posts`,
-        permanent: false
-      }
-    }
   }
 
   return {
