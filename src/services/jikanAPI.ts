@@ -1,4 +1,4 @@
-import { api } from "./services/axios";
+import { api } from "./axios";
 
 const basicFetch = async (endpoint) => {
   const response = await api.get(`${endpoint}`);

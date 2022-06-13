@@ -1,0 +1,35 @@
+{
+  "items": [
+    {
+      "id": "40748",
+      "title": "Jujutsu Kaisen",
+      "description": "Idly indulging in baseless paranormal activities with the Occult Club, high schooler Yuuji Itadori spends his days at either the clubroom or the hospital, where he visits his bedridden grandfather. However, this leisurely lifestyle soon takes a turn for the strange when...",
+      "showType": "tv",
+      "averageRating": "8.68",
+      "year": "2020",
+      "status": "finished",
+      "coverImage": "https://media.kitsu.io/anime/cover_images/42765/original.jpeg" 
+    },
+    {
+      "id": "1735",
+      "title": "Naruto Shippuuden",
+      "description": "It has been two and a half years since Naruto Uzumaki left Konohagakure, the Hidden Leaf Village, for intense training following events which fueled his desire to be stronger. Now Akatsuki, the mysterious organization of elite rogue ninja, is closing in on...",
+      "showType": "tv",
+      "averageRating": "8.24",
+      "year": "2007",
+      "status": "finished",
+      "coverImage": "https://media.kitsu.io/anime/cover_images/1555/original.jpg"
+    },
+    {
+      "id": "16498",
+      "title": "Attack on Titan",
+      "description": "Centuries ago, mankind was slaughtered to near extinction by monstrous humanoid creatures called Titans, forcing humans to hide in fear behind enormous concentric walls. What makes these giants truly terrifying is that their taste for human flesh is not...",
+      "showType": "tv",
+      "averageRating": "8.53",
+      "year": "2013",
+      "status": "finished",
+      "coverImage": "https://media.kitsu.io/anime/cover_images/42422/large.jpg"
+    }
+  ]
+}
+

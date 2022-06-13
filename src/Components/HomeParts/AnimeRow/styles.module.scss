@@ -98,3 +98,11 @@
     }
   }
 }
+
+@media(min-width: 1024px) {
+  .animeContent {
+    h2 {
+      margin-top: 0;
+    }
+  }
+}
