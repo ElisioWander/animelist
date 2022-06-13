@@ -22,7 +22,7 @@ type Post = {
 }
 
 interface PostProps {
-  post: Post
+  post: Post;
 }
 
 export default function Post({ post }: PostProps) {

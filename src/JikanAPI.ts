@@ -10,14 +10,17 @@ const basicFetch = async (endpoint) => {
 export async function getHomeList() {
   return [
     {
-      title: "Mais recentes",
+      slug: "airing-animes",
+      title: "Airing Animes",
       items: await basicFetch(`seasons/now`),
     },
     {
+      slug: "top-animes",
       title: "Top Animes",
       items: await basicFetch(`top/anime`),
     },
     {
+      slug: "up-coming",
       title: "Upcoming",
       items: await basicFetch(`seasons/upcoming`),
     },

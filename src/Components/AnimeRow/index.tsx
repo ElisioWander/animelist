@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { useState } from 'react';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa'
 
@@ -7,6 +8,7 @@ interface AnimeRowProps {
   animeList: Array<{
     mal_id: number;
     title: string;
+    episodes: number;
     images: {
       jpg: {
         image_url: string;
@@ -32,7 +34,7 @@ export function AnimeRow({ animeList, title }: AnimeRowProps) {
   function handleSliderRight() {
     let axleX = scrollX - Math.round(window.innerWidth / 2)
 
-    let listWidth = animeList.length * 170
+    let listWidth = animeList.length * 220
 
     if((window.innerWidth - listWidth) > axleX) {
       axleX = (window.innerWidth - listWidth) - 60
@@ -49,11 +51,15 @@ export function AnimeRow({ animeList, title }: AnimeRowProps) {
         <FaArrowRight className={styles.arrowRight} onClick={handleSliderRight} />
         <ul style={{
           marginLeft: scrollX,
-          width: animeList.length * 170
+          width: animeList.length * 220
         }} >
           {animeList && animeList.map(anime => (
-            <li>
-              <img src={anime.images.jpg.image_url} alt="animes poster" />
+            <li key={anime.mal_id} >
+              <Link href={`/posts/anime-list/${anime.mal_id}`} >
+                <a>
+                  <img src={anime.images.jpg.image_url} alt="animes poster" />
+                </a>
+              </Link>
             </li>
           ))}
         </ul>
