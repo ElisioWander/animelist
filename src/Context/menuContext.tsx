@@ -22,11 +22,11 @@ export function MenuContextProvider({ children }: MenuContextProviderProps) {
     }, [router.asPath])
 
     function handleOpenMenuToggle() {
-        const isActive = !activeMenu
+        !activeMenu
 
-        document.body.style.overflow = isActive == true ? "hidden" : "initial"
+        document.body.style.overflow = !activeMenu ? "hidden" : "initial"
 
-        setActiveMenu(isActive)
+        setActiveMenu(!activeMenu)
     }
 
     return (

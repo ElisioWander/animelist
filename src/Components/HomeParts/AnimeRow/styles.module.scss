@@ -18,7 +18,7 @@
   }
 
   .arrowLeft, .arrowRight {
-    width: 50px;
+    width: 15px;
     height: 293px;
 
     padding: 0 1rem;
@@ -32,9 +32,7 @@
 
     z-index: 99;
 
-    opacity: 0;
-
-    transition: opacity 0.2s;
+    transition: all 0.2s;
 
     cursor: pointer;
     
@@ -45,7 +43,7 @@
     }
 
     &:hover {
-      opacity: 1;
+      width: 50px;
     }
   }
 
@@ -94,6 +92,19 @@
 
           opacity: 1;
         }
+      }
+    }
+  }
+}
+
+@media(min-width: 501px) {
+  .animeContent {
+    .arrowLeft, .arrowRight {
+      width: 50px;
+      opacity: 0;
+
+      &:hover {
+        opacity: 1;
       }
     }
   }
