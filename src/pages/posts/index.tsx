@@ -2,12 +2,13 @@ import { prismicClient } from "../../services/prismic";
 import { useEffect, useState } from "react";
 import { Pagination } from "../../Components/Pagination";
 import { Spinner } from "../../Components/Spinner/Index";
-import { format } from 'date-fns'
+import { format } from "date-fns";
 
 import * as prismicH from "@prismicio/helpers";
 import Link from "next/link";
 
 import styles from "./posts.module.scss";
+import Head from "next/head";
 
 type Post = Array<{
   slug: string;
@@ -16,13 +17,13 @@ type Post = Array<{
   publicationDate: string;
   content: string;
   sinopse: string;
-}>
+}>;
 
 export default function Posts() {
   const [posts, setPosts] = useState<Post>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [page, setPage] = useState(1);
-  const [total, setTotal] = useState(1)
+  const [total, setTotal] = useState(1);
 
   useEffect(() => {
     (async function () {
@@ -31,7 +32,7 @@ export default function Posts() {
       const response = await prismicClient.getAllByType("post");
 
       const total = response.length;
-      setTotal(total)
+      setTotal(total);
 
       const pageStart = (Number(page) - 1) * Number(per_page);
       const pageEnd = pageStart + Number(per_page);
@@ -41,9 +42,12 @@ export default function Posts() {
           slug: post.uid,
           banner: post.data.banner.url,
           title: prismicH.asText(post.data.title),
-          publicationDate: format(new Date(post.first_publication_date), 'dd / MM / yyy'),
+          publicationDate: format(
+            new Date(post.first_publication_date),
+            "dd / MM / yyy"
+          ),
           content: prismicH.asText(post.data.content),
-          sinopse:prismicH.asText(post.data.sinopse),
+          sinopse: prismicH.asText(post.data.sinopse),
           summary:
             post.data.sinopse.find((sinopse) => sinopse.type === "paragraph")
               ?.text ?? "",
@@ -54,14 +58,18 @@ export default function Posts() {
 
       setPosts(posts);
 
-      setIsLoading(false)
+      setIsLoading(false);
     })();
   }, [page]);
-  
+
   return (
     <>
-    {isLoading && <Spinner />}
-      
+      <Head>
+        <title>Anime.List | Blog</title>
+      </Head>
+
+      {isLoading && <Spinner />}
+
       <main className={styles.postsCard}>
         {posts &&
           posts.map((post) => (

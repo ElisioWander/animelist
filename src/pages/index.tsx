@@ -6,6 +6,7 @@ import { FeaturedContainer } from "../Components/HomeParts/FeaturedContainer";
 
 import styles from "./home.module.scss";
 import axios from "axios";
+import Head from "next/head";
 
 type AnimeListData = Array<{
   slug: string;
@@ -31,27 +32,35 @@ export default function Home() {
       //pegando a lista que contem os dados dos animes
       let list = await getHomeList();
 
-      const response = await axios.get(`https://kitsu.io/api/edge/anime?filter[text]=shingeki`)
-      console.log(response.data.data)
+      const response = await axios.get(
+        `https://kitsu.io/api/edge/anime?filter[text]=shingeki`
+      );
+      console.log(response.data.data);
 
       setAnimeList(list);
       setIsLoading(false);
     })();
   }, []);
-  
-  return (
-    <div className={styles.homeContainer}>
-    {isLoading && <Spinner />}
-    <FeaturedContainer />
 
-    <div className={styles.listContainer}>
-      {animeList &&
-        animeList.map((animeList) => (
-          <div key={animeList.slug}>
-            <AnimeRow animeList={animeList.items} title={animeList.title} />
-          </div>
-        ))}
-    </div>
-  </div>
+  return (
+    <>
+      <Head>
+        <title>Anime.List | Home</title>
+      </Head>
+
+      <div className={styles.homeContainer}>
+        {isLoading && <Spinner />}
+        <FeaturedContainer />
+
+        <div className={styles.listContainer}>
+          {animeList &&
+            animeList.map((animeList) => (
+              <div key={animeList.slug}>
+                <AnimeRow animeList={animeList.items} title={animeList.title} />
+              </div>
+            ))}
+        </div>
+      </div>
+    </>
   );
 }

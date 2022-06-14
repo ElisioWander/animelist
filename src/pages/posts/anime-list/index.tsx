@@ -1,3 +1,4 @@
+import Head from "next/head";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { SearchBox } from "../../../Components/Form/SearchBox";
@@ -27,7 +28,7 @@ export default function AnimeList() {
   const [error, setError] = useState<Error>();
   const [total, setTotal] = useState<number>();
   const [page, setPage] = useState(1);
-  const [perPage, setPerPage] = useState<number>(20)
+  const [perPage, setPerPage] = useState<number>(20);
   const [filteredTotalPage, setFilteredTotalPage] = useState<number>();
 
   //pegar os animes assim que o cliente acessar a página
@@ -82,64 +83,70 @@ export default function AnimeList() {
   );
 
   return (
-    <div className={styles.listContainer}>
-      <h1>Procurar anime</h1>
+    <>
+      <Head>
+        <title>Anime.List | List</title>
+      </Head>
 
-      <SearchBox setSearch={setSearch} onPageChange={setPage} />
+      <div className={styles.listContainer}>
+        <h1>Procurar anime</h1>
 
-      <div className={styles.listContent}>
-        {isLoading ? (
-          <Spinner />
-        ) : (
-          <ul>
-            {animes && !filteredAnime
-              ? animes.data.map((anime) => (
-                  <li key={anime.mal_id}>
-                    <Link href={`/posts/anime-list/${anime.mal_id}`}>
-                      <a>
-                        <img
-                          src={anime.images.jpg.large_image_url}
-                          alt="anime banner"
-                        />
-                        <span>{anime.title}</span>
-                      </a>
-                    </Link>
-                  </li>
-                ))
-              : filteredAnime?.map((anime) => (
-                  <li key={anime.mal_id}>
-                    <Link href={`/posts/anime-list/${anime.mal_id}`}>
-                      <a>
-                        <img
-                          src={anime.images.jpg.large_image_url}
-                          alt="anime banner"
-                        />
-                        <span>{anime.title}</span>
-                      </a>
-                    </Link>
-                  </li>
-                ))}
-          </ul>
-        )}
-      </div>
+        <SearchBox setSearch={setSearch} onPageChange={setPage} />
 
-      {!filteredAnime && animes ? (
-        <Pagination
-          totalCountOfRegisters={total}
-          currentPage={page}
-          registerPerPage={perPage}
-          onPageChange={setPage}
-        />
-      ) : (
-        filteredAnime && (
+        <div className={styles.listContent}>
+          {isLoading ? (
+            <Spinner />
+          ) : (
+            <ul>
+              {animes && !filteredAnime
+                ? animes.data.map((anime) => (
+                    <li key={anime.mal_id}>
+                      <Link href={`/posts/anime-list/${anime.mal_id}`}>
+                        <a>
+                          <img
+                            src={anime.images.jpg.large_image_url}
+                            alt="anime banner"
+                          />
+                          <span>{anime.title}</span>
+                        </a>
+                      </Link>
+                    </li>
+                  ))
+                : filteredAnime?.map((anime) => (
+                    <li key={anime.mal_id}>
+                      <Link href={`/posts/anime-list/${anime.mal_id}`}>
+                        <a>
+                          <img
+                            src={anime.images.jpg.large_image_url}
+                            alt="anime banner"
+                          />
+                          <span>{anime.title}</span>
+                        </a>
+                      </Link>
+                    </li>
+                  ))}
+            </ul>
+          )}
+        </div>
+
+        {!filteredAnime && animes ? (
           <Pagination
-            totalCountOfRegisters={filteredTotalPage}
+            totalCountOfRegisters={total}
             currentPage={page}
             registerPerPage={perPage}
             onPageChange={setPage}
           />
-        )
-      )}
-    </div>
+        ) : (
+          filteredAnime && (
+            <Pagination
+              totalCountOfRegisters={filteredTotalPage}
+              currentPage={page}
+              registerPerPage={perPage}
+              onPageChange={setPage}
+            />
+          )
+        )}
+      </div>
+    </>
   );
 }
