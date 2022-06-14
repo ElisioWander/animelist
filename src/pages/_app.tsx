@@ -6,6 +6,7 @@ import { PrismicProvider } from '@prismicio/react'
 import { prismicClient } from '../services/prismic'
 
 import '../styles/global.scss'
+import { Footer } from '../Components/HomeParts/Footer'
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   return (
@@ -14,6 +15,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
         <MenuContextProvider>
           <Header />
           <Component {...pageProps} />
+          <Footer />
         </MenuContextProvider>
       </SessionProvider>
     </PrismicProvider>

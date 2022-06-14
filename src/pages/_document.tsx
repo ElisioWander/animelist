@@ -10,7 +10,11 @@ export default class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
             rel="stylesheet"
           />
-          <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&display=swap" rel="stylesheet" />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&display=swap"
+            rel="stylesheet"
+          />
+          <title>Anime.List</title>
         </Head>
         <body>
           <Main />
