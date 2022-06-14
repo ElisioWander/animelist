@@ -4,9 +4,9 @@ import { SessionProvider } from 'next-auth/react'
 import { MenuContextProvider } from '../Context/menuContext'
 import { PrismicProvider } from '@prismicio/react'
 import { prismicClient } from '../services/prismic'
+import { Footer } from '../Components/HomeParts/Footer'
 
 import '../styles/global.scss'
-import { Footer } from '../Components/HomeParts/Footer'
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   return (

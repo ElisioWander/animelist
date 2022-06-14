@@ -6,7 +6,6 @@
   margin-top: 2rem;
 
   border-top: 1px solid var(--gray-800);
-  border-bottom: 1px solid var(--gray-800);
   background-color: var(--gray-950);
 }
 
@@ -79,12 +78,12 @@
       font-size: 0.83rem;
 
       a {
-        color: var(--white);
+        color: var(--gray-100);
 
         transition: all 0.2s linear;
+        text-decoration: underline;
 
         &:hover {
-          text-decoration: underline;
           filter: brightness(0.8);
         }
       }
