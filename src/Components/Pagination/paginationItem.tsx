@@ -9,7 +9,7 @@ import styles from './stylesItem.module.scss'
 export function PaginationItem({
   isCurrent = false,
   number,
-  onPageChange
+  onPageChange,
 }: PaginationItemProps) {
   if (isCurrent) {
     return( 
@@ -26,6 +26,8 @@ export function PaginationItem({
       </button>
     );
   }
+
+  if(onPageChange) window.scrollTo(0, 0)
 
   return (
     <button 
