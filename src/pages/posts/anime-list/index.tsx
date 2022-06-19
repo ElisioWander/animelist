@@ -89,7 +89,7 @@ export default function AnimeList() {
       </Head>
 
       <div className={styles.listContainer}>
-        <h1>Procurar anime</h1>
+        <h1>Search Anime</h1>
 
         <SearchBox setSearch={setSearch} onPageChange={setPage} />
 

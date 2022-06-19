@@ -13,7 +13,7 @@
 
     margin: 1rem 0 2rem 0;
 
-    border-radius: 1.5rem;
+    border-radius: 2rem;
 
     position: relative;
 
@@ -23,12 +23,14 @@
   }
 
   input {
+    height: 3.3rem;
+
     background: none;
     border: none;
-    border-radius: 1.5rem;
+    border-radius: 2rem;
     width: 100%;
 
-    padding: 0.6rem 1rem;
+    padding: 0.5rem 1rem;
 
     color: var(--gray-300);
   }
@@ -38,9 +40,11 @@
     background: none;
 
     svg {
+      width: 24px;
+      height: 24px;
       position: absolute;
-      right: 1.3rem;
-      top: 0.6rem;
+      right: 2.3rem;
+      top: 0.8rem;
 
       font-size: 1.3rem;
 

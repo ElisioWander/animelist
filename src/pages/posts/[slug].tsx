@@ -47,14 +47,14 @@ export default function Post({ post }: PostProps) {
           <h1>{post.title}</h1>
 
           <time>
-            <span>{`${readTime} min`} de leitura</span>
+            <span>{`${readTime} min`} reading</span>
             <span>{post.date}</span>
           </time>
 
           <section className={styles.animeInfo}>
             {post.sinopse && (
               <>
-                <h3>Sinopse</h3>
+                <h3>Description</h3>
                 <p>{post.sinopse}</p>
               </>
             )}
@@ -64,7 +64,7 @@ export default function Post({ post }: PostProps) {
                 <h3>Staff</h3>
                 <ul>
                   <li>
-                    <strong>Diretor: </strong>
+                    <strong>Director: </strong>
                     <span>{post.staff.director}</span>
                   </li>
                   <li>
@@ -72,7 +72,7 @@ export default function Post({ post }: PostProps) {
                     <span>{post.staff.design}</span>
                   </li>
                   <li>
-                    <strong>Estúdio: </strong>
+                    <strong>Studio: </strong>
                     <span>{post.staff.studio}</span>
                   </li>
                 </ul>
@@ -81,7 +81,7 @@ export default function Post({ post }: PostProps) {
           </section>
 
           <div className={styles.content}>
-            <h3>Mais sobre</h3>
+            <h3>More about</h3>
             <p>{post.content}</p>
 
             {post.video && (
@@ -113,7 +113,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
     },
     content: prismicH.asText(response.data.content),
     video: response.data?.video.url || null,
-    date: format(new Date(response.first_publication_date), "dd / MM / yyy"),
+    date: format(new Date(response.first_publication_date), "yyy / dd / MM"),
   };
 
   return {

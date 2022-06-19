@@ -64,41 +64,41 @@ export default function AnimePage({ anime }: AnimePageProps) {
             <div className={stylesAnimePage.cardContent}>
               <h1>{anime.title}</h1>
               <ul>
-                <li>Verção - {anime.showType}</li>
-                <li>Episódios - {anime.episodes}</li>
-                <li>Ano - {anime.year}</li>
-                <li>Nota - {anime.score}</li>
+                <li>Type - {anime.showType}</li>
+                <li>Episodes - {anime.episodes}</li>
+                <li>Year - {anime.year}</li>
+                <li>Score - {anime.score}</li>
               </ul>
 
               <p>{anime.description}</p>
 
               <a onClick={handleOpenModal}>
                 <FaYoutube />
-                Assistir Trailer
+                Watch trailer
               </a>
             </div>
           </div>
         </div>
         <main className={stylesAnimePage.animeInfo}>
-          <h3>Sinopse</h3>
+          <h3>Description</h3>
 
           <p>{anime.description}</p>
 
           <ul>
             <li>
-              <strong>Ano: </strong>
+              <strong>Year: </strong>
               {anime.year}
             </li>
             <li>
-              <strong>Temporada: </strong>
+              <strong>Seasons: </strong>
               {anime.season}
             </li>
             <li>
-              <strong>Verção: </strong>
+              <strong>Type: </strong>
               {anime.showType}
             </li>
             <li>
-              <strong>Gênero: </strong>
+              <strong>Genres: </strong>
               {anime.genres.map((genre) => (
                 <span key={genre.id}>
                   <span>{genre.name}</span>
@@ -106,7 +106,7 @@ export default function AnimePage({ anime }: AnimePageProps) {
               ))}
             </li>
             <li>
-              <strong>Estúdio: </strong>
+              <strong>Studio: </strong>
               {anime.studios.map((studio) => (
                 <span key={studio.id}>
                   <span>{studio.name}</span>
@@ -114,18 +114,18 @@ export default function AnimePage({ anime }: AnimePageProps) {
               ))}
             </li>
             <li>
-              <strong>Censura: </strong>
+              <strong>Age Rating: </strong>
               {anime.ageRating}
             </li>
           </ul>
 
           <ul>
             <li>
-              <strong>Nota: </strong>
+              <strong>Score: </strong>
               {anime.score}
             </li>
             <li>
-              <strong>Episódios: </strong>
+              <strong>Episodes: </strong>
               {anime.episodes}
             </li>
             <li>

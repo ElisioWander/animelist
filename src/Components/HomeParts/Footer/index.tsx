@@ -26,7 +26,7 @@ export function Footer() {
           </a>
         </section>
         <span>
-          This is a non-commercial website and was made fot the porpose of study
+          This is a non-commercial website and was made for the porpose of study
           <br />
           <strong>@copyright - Elisio Wander</strong>
           <br />
