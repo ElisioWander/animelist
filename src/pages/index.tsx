@@ -35,7 +35,6 @@ export default function Home() {
       const response = await axios.get(
         `https://kitsu.io/api/edge/anime?filter[text]=shingeki`
       );
-      console.log(response.data.data);
 
       setAnimeList(list);
       setIsLoading(false);
