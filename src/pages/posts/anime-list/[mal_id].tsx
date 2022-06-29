@@ -5,7 +5,7 @@ import { api } from "../../../services/axios";
 import stylesAnimePage from "./stylesAnimePage.module.scss";
 import Link from "next/link";
 import { useState } from "react";
-import { VideoModal } from "../../../Components/Modal/VideoModal";
+import { VideoModal } from "../../../Components/Modal/";
 import Head from "next/head";
 
 type AnimePageProps = {

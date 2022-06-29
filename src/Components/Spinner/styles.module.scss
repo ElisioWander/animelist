@@ -24,11 +24,11 @@
 }
 
 .loadingSpinner {
-  width: 54px;
-  height: 54px;
+  width: 44px;
+  height: 44px;
 
-  border: 10px solid #f3f3f3;
-  border-top: 10px solid #383636; /* Blue */
+  border: 5px solid var(--gray-700);
+  border-top: 5px solid var(--yellow-100); /* Blue */
   border-radius: 50%;
   animation: spinner 1.5s linear infinite;
 }

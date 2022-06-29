@@ -3,7 +3,7 @@ import { FiX } from "react-icons/fi";
 
 import ReactModal from "react-modal";
 
-import styles from "./videoModalStyles.module.scss";
+import styles from "./styles.module.scss"
 
 interface SignInModalProps {
   modalIsOpen: boolean;

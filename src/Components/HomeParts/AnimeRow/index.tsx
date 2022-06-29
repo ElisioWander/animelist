@@ -19,7 +19,7 @@ interface AnimeRowProps {
 }
 
 export function AnimeRow({ animeList, title }: AnimeRowProps) {
-  const [scrollX, setScrollX] = useState<number>(-400);
+  const [scrollX, setScrollX] = useState<number>(0);
 
   function handleSliderLeft() {
     let axleX = scrollX + Math.round(window.innerWidth / 2);
@@ -47,7 +47,10 @@ export function AnimeRow({ animeList, title }: AnimeRowProps) {
     <div className={styles.animeContainer}>
       <div className={styles.animeContent}>
         <h2>{title}</h2>
-        <FaArrowLeft className={styles.arrowLeft} onClick={handleSliderLeft} />
+        <FaArrowLeft 
+          className={styles.arrowLeft}
+          onClick={handleSliderLeft}
+        />
         <FaArrowRight
           className={styles.arrowRight}
           onClick={handleSliderRight}
@@ -60,7 +63,7 @@ export function AnimeRow({ animeList, title }: AnimeRowProps) {
         >
           {animeList &&
             animeList.map((anime) => (
-              <li key={anime.mal_id}>
+              <li key={anime.mal_id} style={{ width: animeList.length * 220 }} >
                 <Link href={`/posts/anime-list/${anime.mal_id}`}>
                   <a>
                     <img src={anime.images.jpg.image_url} alt="animes poster" />

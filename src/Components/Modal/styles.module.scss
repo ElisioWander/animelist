@@ -20,7 +20,7 @@
   max-width: 680px;
   height: 320px;
 
-  padding: 3rem;
+  padding: 3rem 0.8rem 0.8rem;
 
   border-radius: 0.3rem;
 
@@ -38,8 +38,8 @@
     height: 24px;
 
     position: absolute;
-    top: 14px;
-    right: 14px;
+    top: 9px;
+    right: 10px;
 
     cursor: pointer;
 
@@ -60,5 +60,11 @@
 @media(min-width: 581px) {
   .reactModalContent {
     height: 420px;
+  }
+}
+
+@media(min-width: 1024px) {
+  .reactModalContent {  
+    padding: 2.8rem 1.25rem 1.25rem;
   }
 }
