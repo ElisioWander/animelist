@@ -3,11 +3,19 @@
   height: 100%;
 }
 
+//esconder a scrollbar do Chrome, Safari e Opera
+.animeContent::-webkit-scrollbar {
+  display: none;
+}
+
 .animeContent {
   position: relative;
 
   overflow-y: hidden;
-  overflow-x: hidden;
+  //esconder a scrollbar do Ie e Edge 
+  scrollbar-width: none;
+  //esconder a scrollbar do Firefox
+  -ms-overflow-style: none;
 
   .arrowLeft, .arrowRight {
     visibility: hidden;
@@ -36,7 +44,6 @@
     li {
       height: 320px;
       margin-bottom: 18px;
-      padding: 5px;
 
       list-style: none;
       position: relative;
