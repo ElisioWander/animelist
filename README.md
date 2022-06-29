@@ -21,7 +21,7 @@ Foram utilizadas as seguintes tecnologias para desenvolver a aplicação **Anime
 
 - [Next](https://nextjs.org/)
 - [Typescript](https://www.typescriptlang.org/)
-- [Tailwind css](https://tailwindcss.com/)
+- [Sass](https://sass-lang.com/)
 - [Prismic](https://prismic.io/)
 
 ---
