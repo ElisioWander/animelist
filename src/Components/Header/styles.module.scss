@@ -1,3 +1,12 @@
+@keyframes goVisible {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 .headerContainer {
   width: 100%;
   height: calc(5rem + 1px);
@@ -75,6 +84,10 @@
   opacity: 0.96;
 
   background-color: var(--black);
+
+  transition: all 0.3s ease linear;
+
+  animation: goVisible 0.3s;
 
   .openMenuToggle {
     position: absolute;

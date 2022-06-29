@@ -45,8 +45,8 @@ export function AnimeRow({ animeList, title }: AnimeRowProps) {
 
   return (
     <div className={styles.animeContainer}>
+      <h2>{title}</h2>
       <div className={styles.animeContent}>
-        <h2>{title}</h2>
         <FaArrowLeft 
           className={styles.arrowLeft}
           onClick={handleSliderLeft}
