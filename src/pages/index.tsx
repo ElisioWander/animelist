@@ -3,10 +3,9 @@ import { useEffect, useState } from "react";
 import { AnimeRow } from "../Components/HomeParts/AnimeRow";
 import { Spinner } from "../Components/Spinner/Index";
 import { FeaturedContainer } from "../Components/HomeParts/FeaturedContainer";
+import Head from "next/head";
 
 import styles from "./home.module.scss";
-import axios from "axios";
-import Head from "next/head";
 
 type AnimeListData = Array<{
   slug: string;
@@ -31,10 +30,6 @@ export default function Home() {
     (async function () {
       //pegando a lista que contem os dados dos animes
       let list = await getHomeList();
-
-      const response = await axios.get(
-        `https://kitsu.io/api/edge/anime?filter[text]=shingeki`
-      );
 
       setAnimeList(list);
       setIsLoading(false);

@@ -1,10 +1,10 @@
-import Head from "next/head";
-import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { SearchBox } from "../../../Components/Form/SearchBox";
 import { Pagination } from "../../../Components/Pagination";
 import { Spinner } from "../../../Components/Spinner/Index";
-import { api } from "../../../services/axios";
+import { useFetch } from "../../../hooks/useFetch";
+import Head from "next/head";
+import Link from "next/link";
 
 import styles from "./styles.module.scss";
 
@@ -18,69 +18,54 @@ type AnimeInfoData = {
       };
     };
   }>;
+  pagination: {
+    items: {
+      total?: number;
+    };
+  };
 };
+
+type filteredAnime = Array<{
+  mal_id: string;
+  title: string;
+  images: {
+    jpg: {
+      large_image_url: string;
+    };
+  };
+}>;
 
 export default function AnimeList() {
   const [search, setSearch] = useState<null | string>(null);
-  const [searchAnimes, setSearchAnimes] = useState<AnimeInfoData | null>(null);
-  const [animes, setAnimes] = useState<AnimeInfoData | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<Error>();
-  const [total, setTotal] = useState<number>();
   const [page, setPage] = useState(1);
-  const [perPage, setPerPage] = useState<number>(20);
-  const [filteredTotalPage, setFilteredTotalPage] = useState<number>();
 
   //pegar os animes assim que o cliente acessar a página
-  useEffect(() => {
-    api
-      .get(`anime?page=${page}&limit=${perPage}&type=tv&order_by=title`)
-      .then((response) => {
-        const total = response.data.pagination.items?.total;
-        setTotal(total);
-        setAnimes(response.data);
-      })
-      .catch((err) => {
-        setError(err);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  }, [page]);
+  const {
+    data: animes,
+    isFetching,
+    error,
+  } = useFetch<AnimeInfoData | null>(`anime?page=${page}&limit=20`, page);
+  //total de animes
+  const totalCount = animes?.pagination.items.total;
 
-  //Pegar os animes com o nome passado no import, o valor do input
-  //foi atribuido ao estado "search".
-  //Os dados serão enviados para o estado "animeInfoData", apenas se o estado "search"
-  //estiver preenchido com alguma informação que o usuário digitou no input e enviou para a
-  //função "handleSubmit"
-  useEffect(() => {
-    setIsLoading(true);
-    api
-      .get(`anime?q=${search}&order_by=score&page=${page}&limit=${perPage}`)
-      .then((response) => {
-        const page = response.data.pagination.current_page;
-        //todos os dados que virão na requisição após a busca dos dados
-        const filteredTotalPage = response.data.pagination.items.total;
-
-        if (search != null) {
-          setPage(page);
-          setFilteredTotalPage(filteredTotalPage);
-          setSearchAnimes(response.data);
-        }
-      })
-      .catch((err) => {
-        setError(err);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  }, [search, page]);
+  //Pegar os animes com o nome passado no input
+  const { data: searchAnimes } = useFetch<AnimeInfoData | null>(
+    `anime?q=${search}&order_by=score&page=${page}&limit=20`,
+    page,
+    search
+  );
+  //total de animes após a busca
+  const searchTotalCount = searchAnimes?.pagination.items.total
 
   //fazendo a filtragem dos dados, passando como parâmetro o "search", ou seja, os dados
   //que foram enviados atravez da função "handleSubmit"
-  const filteredAnime = searchAnimes?.data.filter((anime) =>
-    anime.title.toLowerCase().includes(search)
-  );
+  let filteredAnime: filteredAnime;
+
+  if (search != null) {
+    filteredAnime = searchAnimes?.data.filter((anime) =>
+      anime.title.toLowerCase().includes(search)
+    );
+  }
 
   return (
     <>
@@ -94,7 +79,7 @@ export default function AnimeList() {
         <SearchBox setSearch={setSearch} onPageChange={setPage} />
 
         <div className={styles.listContent}>
-          {isLoading ? (
+          {isFetching ? (
             <Spinner />
           ) : (
             <ul>
@@ -131,17 +116,17 @@ export default function AnimeList() {
 
         {!filteredAnime && animes ? (
           <Pagination
-            totalCountOfRegisters={total}
+            totalCountOfRegisters={totalCount}
             currentPage={page}
-            registerPerPage={perPage}
+            registerPerPage={20}
             onPageChange={setPage}
           />
         ) : (
           filteredAnime && (
             <Pagination
-              totalCountOfRegisters={filteredTotalPage}
+              totalCountOfRegisters={searchTotalCount}
               currentPage={page}
-              registerPerPage={perPage}
+              registerPerPage={20}
               onPageChange={setPage}
             />
           )

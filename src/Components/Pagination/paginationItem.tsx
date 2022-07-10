@@ -30,11 +30,11 @@ export function PaginationItem({
   if(onPageChange) window.scrollTo(0, 0)
 
   return (
-    <button 
+    <a 
       className={styles.paginationButton}
       onClick={() => onPageChange(number)}
     >
       {number}
-    </button>
+    </a>
   )
 }
