@@ -1,36 +1,36 @@
-import { GetServerSideProps } from "next";
-import { prismicClient } from "../../services/prismic";
-import { format } from "date-fns";
+import { GetServerSideProps } from 'next'
+import { prismicClient } from '../../services/prismic'
+import { format } from 'date-fns'
 
-import * as prismicH from "@prismicio/helpers";
+import * as prismicH from '@prismicio/helpers'
 
-import styles from "./post.module.scss";
-import Head from "next/head";
+import styles from './post.module.scss'
+import Head from 'next/head'
 
-type Post = {
-  slug: string;
-  banner: string;
-  title: string;
-  sinopse: string;
+type PostData = {
+  slug: string
+  banner: string
+  title: string
+  sinopse: string
   staff: {
-    director: string;
-    design: string;
-    studio: string;
-  };
-  content: string;
-  video: string;
-  date: string;
-};
+    director: string
+    design: string
+    studio: string
+  }
+  content: string
+  video: string
+  date: string
+}
 
 interface PostProps {
-  post: Post;
+  post: PostData
 }
 
 export default function Post({ post }: PostProps) {
-  const contentText = post.content + post.sinopse;
-  const wordCount = contentText.split(" ").length;
+  const contentText = post.content + post.sinopse
+  const wordCount = contentText.split(' ').length
 
-  const readTime = Math.ceil(wordCount / 200);
+  const readTime = Math.ceil(wordCount / 200)
 
   return (
     <>
@@ -93,13 +93,13 @@ export default function Post({ post }: PostProps) {
         </main>
       </div>
     </>
-  );
+  )
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  const { slug } = params;
+  const { slug } = params
 
-  const response = await prismicClient.getByUID("post", String(slug));
+  const response = await prismicClient.getByUID('post', String(slug))
 
   const post = {
     slug,
@@ -113,10 +113,10 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
     },
     content: prismicH.asText(response.data.content),
     video: response.data?.video.url || null,
-    date: format(new Date(response.first_publication_date), "yyy / dd / MM"),
-  };
+    date: format(new Date(response.first_publication_date), 'yyy / dd / MM'),
+  }
 
   return {
     props: { post },
-  };
-};
+  }
+}

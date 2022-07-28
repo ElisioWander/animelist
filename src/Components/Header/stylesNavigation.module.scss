@@ -1,0 +1,18 @@
+.navigationContainer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  ul {
+    height: 5rem;
+    display: flex;
+    gap: 1.5rem;
+  }
+}
+
+@media(max-width: 771px) {
+  .navigationContainer {
+    display: none;
+  }
+}

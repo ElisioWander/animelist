@@ -1,49 +1,27 @@
-import { useMenuToggle } from "../../Context/menuContext";
-import { ActiveLink } from "../ActiveLink";
-import { Logo } from "../Logo/index";
-import { SignInButton } from "../SignInButton";
-import { UserInfo } from "../UserInfo";
+import { Logo } from '../Logo/index'
+import { UserInfo } from '../UserInfo'
+import { Navigation } from './Navigation'
+import { NavigationItem } from './NavigationItem'
+import { MenuBurger } from './menuBurger'
 
-import styles from "./styles.module.scss";
+import styles from './styles.module.scss'
 
 export function Header() {
-  const { activeMenu, handleOpenMenuToggle } = useMenuToggle()
-
   return (
     <header className={styles.headerContainer}>
       <div className={styles.headerContent}>
         <Logo />
 
-        <div className={`${styles.menuSection} ${activeMenu ? styles.on : ""}`}>
-          <div className={styles.openMenuToggle} onClick={handleOpenMenuToggle}>
-            <div></div>
-            <div></div>
-          </div>
-          <nav className={`${styles.menuNav} ${styles.on}`}>
-            <ul>
-              <li>
-                <ActiveLink activeClass={styles.active} href="/">
-                  <a>Home</a>
-                </ActiveLink>
-              </li>
-              <li>
-                <ActiveLink activeClass={styles.active} href="/posts">
-                  <a>Blog</a>
-                </ActiveLink>
-              </li>
-              <li>
-                <ActiveLink activeClass={styles.active} href="/posts/anime-list">
-                  <a>Animes</a>
-                </ActiveLink>
-              </li>
-            </ul>
-
-            <SignInButton />
-          </nav>
-        </div>
+        <Navigation>
+          <NavigationItem url="/" title="Home" />
+          <NavigationItem url="/posts" title="Blog" />
+          <NavigationItem url="/posts/anime-list" title="Animes" />
+        </Navigation>
 
         <UserInfo />
+
+        <MenuBurger />
       </div>
     </header>
-  );
+  )
 }

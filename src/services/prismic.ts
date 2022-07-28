@@ -1,6 +1,6 @@
-import * as prismic from "@prismicio/client";
+import * as prismic from '@prismicio/client'
 
-const endPoint = 'animelist';
+const endPoint = 'animelist'
 
 export const prismicClient = prismic.createClient(endPoint, {
   accessToken: process.env.NEXT_PUBLIC_PRISMIC_ACCESS_TOKEN,
@@ -8,7 +8,7 @@ export const prismicClient = prismic.createClient(endPoint, {
   routes: [
     {
       type: 'post',
-      path: '/'
-    }
-  ]
-});
+      path: '/',
+    },
+  ],
+})

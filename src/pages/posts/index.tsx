@@ -1,41 +1,41 @@
-import { prismicClient } from "../../services/prismic";
-import { useEffect, useState } from "react";
-import { Pagination } from "../../Components/Pagination";
-import { Spinner } from "../../Components/Spinner/Index";
-import { format } from "date-fns";
+import { prismicClient } from '../../services/prismic'
+import { useEffect, useState } from 'react'
+import { Pagination } from '../../Components/Pagination'
+import { Spinner } from '../../Components/Spinner/Index'
+import { format } from 'date-fns'
 
-import * as prismicH from "@prismicio/helpers";
-import Link from "next/link";
+import * as prismicH from '@prismicio/helpers'
+import Link from 'next/link'
 
-import styles from "./posts.module.scss";
-import Head from "next/head";
+import styles from './posts.module.scss'
+import Head from 'next/head'
 
-type Post = Array<{
-  slug: string;
-  banner: string;
-  title: string;
-  publicationDate: string;
-  content: string;
-  sinopse: string;
-}>;
+type Post = {
+  slug: string
+  banner: string
+  title: string
+  publicationDate: string
+  content: string
+  sinopse: string
+}
 
 export default function Posts() {
-  const [posts, setPosts] = useState<Post>(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [page, setPage] = useState(1);
-  const [total, setTotal] = useState(1);
+  const [posts, setPosts] = useState<Post[]>(null)
+  const [isLoading, setIsLoading] = useState(true)
+  const [page, setPage] = useState(1)
+  const [total, setTotal] = useState(1)
 
   useEffect(() => {
-    (async function () {
-      const per_page = 6;
+    ;(async function () {
+      const perPage = 6
 
-      const response = await prismicClient.getAllByType("post");
+      const response = await prismicClient.getAllByType('post')
 
-      const total = response.length;
-      setTotal(total);
+      const total = response.length
+      setTotal(total)
 
-      const pageStart = (Number(page) - 1) * Number(per_page);
-      const pageEnd = pageStart + Number(per_page);
+      const pageStart = (Number(page) - 1) * Number(perPage)
+      const pageEnd = pageStart + Number(perPage)
 
       const allPosts = response.map((post) => {
         return {
@@ -44,23 +44,23 @@ export default function Posts() {
           title: prismicH.asText(post.data.title),
           publicationDate: format(
             new Date(post.first_publication_date),
-            "dd / MM / yyy"
+            'dd / MM / yyy',
           ),
           content: prismicH.asText(post.data.content),
           sinopse: prismicH.asText(post.data.sinopse),
           summary:
-            post.data.sinopse.find((sinopse) => sinopse.type === "paragraph")
-              ?.text ?? "",
-        };
-      });
+            post.data.sinopse.find((sinopse) => sinopse.type === 'paragraph')
+              ?.text ?? '',
+        }
+      })
 
-      const posts = allPosts.slice(pageStart, pageEnd);
+      const posts = allPosts.slice(pageStart, pageEnd)
 
-      setPosts(posts);
+      setPosts(posts)
 
-      setIsLoading(false);
-    })();
-  }, [page]);
+      setIsLoading(false)
+    })()
+  }, [page])
 
   return (
     <>
@@ -71,28 +71,27 @@ export default function Posts() {
       {isLoading && <Spinner />}
 
       <main className={styles.postsCard}>
-        {posts &&
-          posts.map((post) => (
-            <Link href={`/posts/${post.slug}`} key={post.slug}>
-              <a>
-                <div className={styles.postCard}>
-                  <div className={styles.cardImage}>
-                    <img src={post.banner} alt="bannner anime" />
-                  </div>
-                  <div className={styles.hero}>
-                    <span>news</span>
+        {posts?.map((post) => (
+          <Link href={`/posts/${post.slug}`} key={post.slug}>
+            <a>
+              <div className={styles.postCard}>
+                <div className={styles.cardImage}>
+                  <img src={post.banner} alt="bannner anime" />
+                </div>
+                <div className={styles.hero}>
+                  <span>news</span>
 
-                    <div className={styles.cardFooter}>
-                      <h1>{post.title}</h1>
-                      <div>
-                        <span>{post.publicationDate}</span>
-                      </div>
+                  <div className={styles.cardFooter}>
+                    <h1>{post.title}</h1>
+                    <div>
+                      <span>{post.publicationDate}</span>
                     </div>
                   </div>
                 </div>
-              </a>
-            </Link>
-          ))}
+              </div>
+            </a>
+          </Link>
+        ))}
       </main>
 
       <Pagination
@@ -101,5 +100,5 @@ export default function Posts() {
         onPageChange={setPage}
       />
     </>
-  );
+  )
 }

@@ -1,4 +1,5 @@
-import { FaGithub, FaInstagram, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
+import { FaGithub, FaInstagram, FaLinkedin, FaWhatsapp } from 'react-icons/fa'
+import { SocialMedia } from '../../SocialMedia'
 import styles from './styles.module.scss'
 
 export function Footer() {
@@ -6,24 +7,22 @@ export function Footer() {
     <footer className={styles.footerContainer}>
       <div className={styles.footerContent}>
         <section className={styles.footerContact}>
-          <a
-            href="https://www.linkedin.com/in/elisio-wander-b88b69136/"
-            target="_blank"
-          >
-            <FaLinkedin />
-          </a>
-          <a href="https://github.com/ElisioWander" target="_blank">
-            <FaGithub />
-          </a>
-          <a
-            href="https://api.whatsapp.com/send?phone=5532999924818"
-            target="_blank"
-          >
-            <FaWhatsapp />
-          </a>
-          <a href="https://www.instagram.com/elisio_wander/" target="_blank">
-            <FaInstagram />
-          </a>
+          <SocialMedia
+            url="https://www.linkedin.com/in/elisio-wander-b88b69136/"
+            icon={<FaLinkedin />}
+          />
+          <SocialMedia
+            url="https://github.com/ElisioWander"
+            icon={<FaGithub />}
+          />
+          <SocialMedia
+            url="https://api.whatsapp.com/send?phone=5532999924818"
+            icon={<FaWhatsapp />}
+          />
+          <SocialMedia
+            url="https://www.instagram.com/elisio_wander/"
+            icon={<FaInstagram />}
+          />
         </section>
         <span>
           This is a non-commercial website and was made for the porpose of study
@@ -31,10 +30,14 @@ export function Footer() {
           <strong>@copyright - Elisio Wander</strong>
           <br />
           <span>
-            This site uses <a href="https://jikan.moe/" target="_blank" >Jinkan</a> free API
+            This site uses
+            <a href="https://jikan.moe/" target="_blank" rel="noreferrer">
+              Jinkan
+            </a>
+            free API
           </span>
         </span>
       </div>
     </footer>
-  );
+  )
 }

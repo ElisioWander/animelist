@@ -1,0 +1,48 @@
+.menuBurgerContainer {
+  width: 38px;
+  height: 34px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+
+  cursor: pointer;
+
+  z-index: 999;
+
+  span {
+    width: 100%;
+    height: 3px;
+
+    display: block;
+
+    background-color: var(--yellow-100);
+
+    transition: all 0.2s;
+  }
+}
+
+.active {
+  span {
+    &:first-child {
+      transform: rotate(45deg) translate(10px, 13px);
+    }
+
+    &:nth-child(2) {
+      visibility: hidden;
+    }
+
+    &:last-child {
+      transform: rotate(-45deg) translate(1px, -4px);
+    }
+  }
+}
+
+
+@media(min-width: 771px) {
+  .menuBurgerContainer {
+    display: none;
+  }
+}

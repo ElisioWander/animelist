@@ -1,31 +1,31 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react'
 import { FaArrowRight } from 'react-icons/fa'
-import featuredContentInfo from "../../../services/featuredContentInfo.json";
-import Link from "next/link";
+import Link from 'next/link'
+import featuredContentInfo from '../../../services/featuredContentInfo.json'
 
-import styles from "./styles.module.scss";
+import styles from './styles.module.scss'
 
 type FeaturedAnimeData = {
-  id: string;
-  title: string;
-  description: string;
-  showType: string;
-  averageRating: string;
-  year: string;
-  status: string;
-  coverImage: string;
-};
+  id: string
+  title: string
+  description: string
+  showType: string
+  averageRating: string
+  year: string
+  status: string
+  coverImage: string
+}
 
 export function FeaturedContainer() {
-  const [featuredAnime, setFeaturedAnime] = useState<FeaturedAnimeData>(null);
+  const [featuredAnime, setFeaturedAnime] = useState({} as FeaturedAnimeData)
 
   useEffect(() => {
-    const featuredData = featuredContentInfo.items;
-    let randomItems = Math.floor(Math.random() * featuredData.length);
-    let animeChosen = featuredData[randomItems];
+    const featuredData = featuredContentInfo.items
+    const randomItems = Math.floor(Math.random() * featuredData.length)
+    const animeChosen = featuredData[randomItems]
 
-    setFeaturedAnime(animeChosen);
-  }, []);
+    setFeaturedAnime(animeChosen)
+  }, [])
 
   return (
     <>
@@ -35,8 +35,8 @@ export function FeaturedContainer() {
           className={styles.headerSection}
           style={{
             backgroundImage: `url(${featuredAnime.coverImage})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
           }}
         >
           <div className={styles.headerVertical}>
@@ -51,9 +51,9 @@ export function FeaturedContainer() {
                   <span>{featuredAnime.status}</span>
                 </div>
 
-                <Link href={`posts/anime-list/${featuredAnime.id}`} >
+                <Link href={`posts/anime-list/${featuredAnime.id}`}>
                   <a>
-                    Details  
+                    Details
                     <FaArrowRight fontSize={12} />
                   </a>
                 </Link>
@@ -63,5 +63,5 @@ export function FeaturedContainer() {
         </section>
       )}
     </>
-  );
+  )
 }

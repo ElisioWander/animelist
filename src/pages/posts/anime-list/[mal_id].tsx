@@ -1,44 +1,40 @@
-import { FaYoutube, FaArrowCircleLeft } from "react-icons/fa";
-import { GetStaticPaths, GetStaticProps } from "next";
-import { api } from "../../../services/axios";
+import { FaYoutube, FaArrowCircleLeft } from 'react-icons/fa'
+import { GetStaticPaths, GetStaticProps } from 'next'
+import { api } from '../../../services/axios'
+import { VideoModal } from '../../../Components/Modal/'
+import { useModal } from '../../../Context/ModalContext'
+import Link from 'next/link'
+import Head from 'next/head'
 
-import stylesAnimePage from "./stylesAnimePage.module.scss";
-import Link from "next/link";
-import { useState } from "react";
-import { VideoModal } from "../../../Components/Modal/";
-import Head from "next/head";
+import stylesAnimePage from './stylesAnimePage.module.scss'
 
 type AnimePageProps = {
   anime: {
-    id: string;
-    title: string;
-    poster: string;
-    showType: string;
-    episodes: number;
-    status: string;
-    youtubeVideo: string;
-    score: number;
-    description: string;
-    year: number;
-    season: string;
-    ageRating: string;
+    id: string
+    title: string
+    poster: string
+    showType: string
+    episodes: number
+    status: string
+    youtubeVideo: string
+    score: number
+    description: string
+    year: number
+    season: string
+    ageRating: string
     genres: Array<{
-      id: string;
-      name: string;
-    }>;
+      id: string
+      name: string
+    }>
     studios: Array<{
-      id: string;
-      name: string;
-    }>;
-  };
-};
+      id: string
+      name: string
+    }>
+  }
+}
 
 export default function AnimePage({ anime }: AnimePageProps) {
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-
-  function handleOpenModal() {
-    setModalIsOpen(true);
-  }
+  const { handleOpenModal } = useModal()
 
   return (
     <>
@@ -136,28 +132,24 @@ export default function AnimePage({ anime }: AnimePageProps) {
         </main>
       </div>
 
-      <VideoModal
-        modalIsOpen={modalIsOpen}
-        setModalIsOpen={setModalIsOpen}
-        youtubeVideo={anime.youtubeVideo}
-      />
+      <VideoModal youtubeVideo={anime.youtubeVideo} />
     </>
-  );
+  )
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
     paths: [],
-    fallback: "blocking",
-  };
-};
+    fallback: 'blocking',
+  }
+}
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const { mal_id } = params;
+  const { mal_id: malId } = params
 
-  //pegar o anime pelo ID
-  const animesResponse = await api.get(`anime/${mal_id}`);
-  const animes = animesResponse.data;
+  // pegar o anime pelo ID
+  const animesResponse = await api.get(`anime/${malId}`)
+  const animes = animesResponse.data
 
   const anime = {
     ...animes.data,
@@ -169,7 +161,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     status: animes.data.status,
     youtubeVideo: animes.data.trailer.youtube_id,
     score: animes.data.score,
-    description: animes.data.synopsis?.substring(0, 400) + "...",
+    description: animes.data.synopsis?.substring(0, 400) + '...',
     year: animes.data.year,
     season: animes.data.season,
     ageRating: animes.data.rating,
@@ -177,17 +169,17 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       return {
         id: genre.mal_id.toString(),
         name: genre.name,
-      };
+      }
     }),
     studios: animes.data.studios.map((studio) => {
       return {
         id: studio.mal_id.toString(),
         name: studio.name,
-      };
+      }
     }),
-  };
+  }
 
   return {
     props: { anime },
-  };
-};
+  }
+}

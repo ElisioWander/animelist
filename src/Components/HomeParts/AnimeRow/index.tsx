@@ -1,56 +1,55 @@
-import { useState } from "react";
-import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import Link from "next/link";
+import { useState } from 'react'
+import { FaArrowLeft, FaArrowRight } from 'react-icons/fa'
 
-import styles from "./styles.module.scss";
+import styles from './styles.module.scss'
+import { Animes } from '../../Animes'
+
+type AnimeListData = {
+  mal_id: number
+  title: string
+  episodes: number
+  images: {
+    jpg: {
+      image_url: string
+    }
+  }
+}
 
 interface AnimeRowProps {
-  animeList: Array<{
-    mal_id: number;
-    title: string;
-    episodes: number;
-    images: {
-      jpg: {
-        image_url: string;
-      };
-    };
-  }>;
-  title: string;
+  animeList: AnimeListData[]
+  title: string
 }
 
 export function AnimeRow({ animeList, title }: AnimeRowProps) {
-  const [scrollX, setScrollX] = useState<number>(0);
+  const [scrollX, setScrollX] = useState<number>(0)
 
   function handleSliderLeft() {
-    let axleX = scrollX + Math.round(window.innerWidth / 2);
+    let axleX = scrollX + Math.round(window.innerWidth / 2)
 
     if (axleX > 0) {
-      axleX = 0;
+      axleX = 0
     }
 
-    setScrollX(axleX);
+    setScrollX(axleX)
   }
 
   function handleSliderRight() {
-    let axleX = scrollX - Math.round(window.innerWidth / 2);
+    let axleX = scrollX - Math.round(window.innerWidth / 2)
 
-    let listWidth = animeList.length * 220;
+    const listWidth = animeList.length * 220
 
     if (window.innerWidth - listWidth > axleX) {
-      axleX = window.innerWidth - listWidth - 60;
+      axleX = window.innerWidth - listWidth - 60
     }
 
-    setScrollX(axleX);
+    setScrollX(axleX)
   }
 
   return (
     <div className={styles.animeContainer}>
       <h2>{title}</h2>
       <div className={styles.animeContent}>
-        <FaArrowLeft 
-          className={styles.arrowLeft}
-          onClick={handleSliderLeft}
-        />
+        <FaArrowLeft className={styles.arrowLeft} onClick={handleSliderLeft} />
         <FaArrowRight
           className={styles.arrowRight}
           onClick={handleSliderRight}
@@ -61,18 +60,15 @@ export function AnimeRow({ animeList, title }: AnimeRowProps) {
             width: animeList.length * 220,
           }}
         >
-          {animeList &&
-            animeList.map((anime) => (
-              <li key={anime.mal_id} style={{ width: animeList.length * 220 }} >
-                <Link href={`/posts/anime-list/${anime.mal_id}`}>
-                  <a>
-                    <img src={anime.images.jpg.image_url} alt="animes poster" />
-                  </a>
-                </Link>
-              </li>
-            ))}
+          {animeList?.map((anime) => (
+            <Animes
+              key={anime.mal_id}
+              url={`/posts/anime-list/${anime.mal_id}`}
+              image={anime.images.jpg.image_url}
+            />
+          ))}
         </ul>
       </div>
     </div>
-  );
+  )
 }

@@ -1,0 +1,14 @@
+.sidebarContainer {
+  width: 100%;
+
+  padding: 5rem 1.5rem;
+
+  ul {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+  }
+}

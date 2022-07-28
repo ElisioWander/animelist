@@ -9,9 +9,9 @@
 
 .spinnerContainer {
   width: 100%;
-  height: calc(100vh - 5rem);
+  height: 100vh;
 
-  position: absolute;
+  position: fixed;
   bottom: 0;
   
   z-index: 99;
