@@ -12,13 +12,14 @@
 
   text-align: center;
   list-style: none;
+
+  position: relative;
  
   a {
     display: block;
 
     font-size: 1.5rem;
     line-height: 1.6;
-    position: relative;
   
     color: var(--gray-300);
 
