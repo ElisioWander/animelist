@@ -1,15 +1,16 @@
-import { useModal } from '../../Context/ModalContext'
+import { useSidebar } from '../../Context/SidebarContext'
+
 import styles from './stylesMenuBurger.module.scss'
 
 export function MenuBurger() {
-  const { handleOpenModal, openModal } = useModal()
+  const { handleOpenSidebar, isSidebarOpen } = useSidebar()
 
   return (
     <div
       className={`${styles.menuBurgerContainer} ${
-        openModal ? styles.active : styles.menuBurgerContainer
+        isSidebarOpen ? styles.active : styles.menuBurgerContainer
       }`}
-      onClick={handleOpenModal}
+      onClick={handleOpenSidebar}
     >
       <span></span>
       <span></span>

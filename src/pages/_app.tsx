@@ -8,16 +8,19 @@ import { ModalProvider } from '../Context/ModalContext'
 import { Sidebar } from '../Components/Sidebar'
 
 import '../styles/global.scss'
+import { SidebarProvider } from '../Context/SidebarContext'
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   return (
     <PrismicProvider client={prismicClient}>
       <SessionProvider session={session}>
         <ModalProvider>
-          <Header />
-          <Sidebar />
-          <Component {...pageProps} />
-          <Footer />
+          <SidebarProvider>
+            <Header />
+            <Sidebar />
+            <Component {...pageProps} />
+            <Footer />
+          </SidebarProvider>
         </ModalProvider>
       </SessionProvider>
     </PrismicProvider>

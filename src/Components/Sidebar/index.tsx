@@ -1,17 +1,17 @@
 import ReactModal from 'react-modal'
-import { useModal } from '../../Context/ModalContext'
+import { useSidebar } from '../../Context/SidebarContext'
 import { SidebarNav } from './SidebarNav'
 import { SidebarNavItem } from './SidebarNavItem'
 
 import styles from './styles.module.scss'
 
 export function Sidebar() {
-  const { handleCloseModal, openModal } = useModal()
+  const { handleOpenSidebar, isSidebarOpen } = useSidebar()
 
   return (
     <ReactModal
-      isOpen={openModal}
-      onRequestClose={handleCloseModal}
+      isOpen={isSidebarOpen}
+      onRequestClose={handleOpenSidebar}
       overlayClassName={styles.reactModalOverlay}
       className={styles.reactModalContent}
       ariaHideApp={false}
