@@ -46,6 +46,10 @@
         filter: brightness(0.8);
       }
 
+      &:focus {
+        box-shadow: 0 0 0 2px var(--yellow-100);
+      }
+
       svg {
         width: 24px;
         height: 24px;

@@ -1,7 +1,7 @@
-import ReactModal from 'react-modal'
 import { useSidebar } from '../../Context/SidebarContext'
 import { SidebarNav } from './SidebarNav'
 import { SidebarNavItem } from './SidebarNavItem'
+import ReactModal from 'react-modal'
 
 import styles from './styles.module.scss'
 

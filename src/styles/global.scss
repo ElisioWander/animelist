@@ -5,6 +5,11 @@
     box-sizing: border-box;
 }
 
+:focus {
+    outline: 0;
+    box-shadow: 0 0 0 2px var(--yellow-100);
+}  
+
 :root {
     --white: #FFFFFF;
     --black: #000;
@@ -47,7 +52,11 @@ body, input, textarea, select {
 } 
 
 button {
-    cursor: poiter;
+  cursor: poiter;
+
+  &:focus {
+    box-shadow: 0 0 0 2px var(--yellow-100);
+  }
 }
 
 a {

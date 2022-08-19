@@ -3,12 +3,12 @@ import { Header } from '../Components/Header'
 import { SessionProvider } from 'next-auth/react'
 import { PrismicProvider } from '@prismicio/react'
 import { prismicClient } from '../services/prismic'
-import { Footer } from '../Components/HomeParts/Footer'
 import { ModalProvider } from '../Context/ModalContext'
 import { Sidebar } from '../Components/Sidebar'
+import { SidebarProvider } from '../Context/SidebarContext'
 
 import '../styles/global.scss'
-import { SidebarProvider } from '../Context/SidebarContext'
+import { Footer } from '../Components/Footer'
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   return (

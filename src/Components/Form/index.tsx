@@ -18,7 +18,7 @@ export function SearchBox({
     setSearchInputValue(event.target.value)
   }
 
-  function handleSubmit(event: FormEvent) {
+  function handleSubmitSearchForm(event: FormEvent) {
     event.preventDefault()
 
     onPageChange(1)
@@ -27,7 +27,7 @@ export function SearchBox({
   }
 
   return (
-    <form className={styles.searchBox} onSubmit={handleSubmit}>
+    <form className={styles.searchBox} onSubmit={handleSubmitSearchForm}>
       <label>
         <input
           type="text"

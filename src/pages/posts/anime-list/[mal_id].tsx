@@ -8,7 +8,17 @@ import Head from 'next/head'
 
 import stylesAnimePage from './stylesAnimePage.module.scss'
 
-type AnimePageProps = {
+type Genres = {
+  id: string
+  name: string
+}
+
+type Studios = {
+  id: string
+  name: string
+}
+
+interface AnimePageProps {
   anime: {
     id: string
     title: string
@@ -22,14 +32,8 @@ type AnimePageProps = {
     year: number
     season: string
     ageRating: string
-    genres: Array<{
-      id: string
-      name: string
-    }>
-    studios: Array<{
-      id: string
-      name: string
-    }>
+    genres: Genres[]
+    studios: Studios[]
   }
 }
 
@@ -68,10 +72,10 @@ export default function AnimePage({ anime }: AnimePageProps) {
 
               <p>{anime.description}</p>
 
-              <a onClick={handleOpenModal}>
+              <button type="button" onClick={handleOpenModal}>
                 <FaYoutube />
                 Watch trailer
-              </a>
+              </button>
             </div>
           </div>
         </div>

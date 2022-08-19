@@ -1,5 +1,5 @@
 import { FaGithub, FaInstagram, FaLinkedin, FaWhatsapp } from 'react-icons/fa'
-import { SocialMedia } from '../../SocialMedia'
+import { SocialMedia } from '../SocialMedia'
 import styles from './styles.module.scss'
 
 export function Footer() {
