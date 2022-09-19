@@ -2,8 +2,9 @@ import { useState } from 'react'
 import { SearchBox } from '../../../Components/Form'
 import { Pagination } from '../../../Components/Pagination'
 import { Spinner } from '../../../Components/Spinner/Index'
-import { useFetch } from '../../../hooks/useFetch'
 import { Animes } from '../../../Components/Animes'
+import { useQuery } from '@tanstack/react-query'
+import { getAnimes } from '../../../hooks/useJikanAPI'
 import Head from 'next/head'
 
 import styles from './styles.module.scss'
@@ -18,7 +19,7 @@ type AnimeInfo = {
   }
 }
 
-type AnimesDta = {
+type AnimesData = {
   data: AnimeInfo[]
   pagination: {
     items: {
@@ -28,14 +29,14 @@ type AnimesDta = {
 }
 
 export default function AnimeList() {
-  const [search, setSearch] = useState<string>('')
+  const [search, setSearch] = useState('')
   const [page, setPage] = useState(1)
 
-  const { data: animes, isFetching } = useFetch<AnimesDta>(
-    `anime?q=${search}&order_by=score&page=${page}&limit=20`,
-    page,
-    search,
+  const { data: animes, isFetching } = useQuery<AnimesData>(
+    ['ANIMES', page],
+    () => getAnimes(search, page),
   )
+
   const totalCount = animes?.pagination.items.total
 
   function handleGetSearchInputValue(searchInputValue: string) {

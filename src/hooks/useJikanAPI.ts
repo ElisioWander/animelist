@@ -1,6 +1,6 @@
-import { api } from './axios'
+import { api } from '../services/axios'
 
-const basicFetch = async (endpoint) => {
+const basicFetch = async (endpoint: string) => {
   const response = await api.get(`${endpoint}`)
   const data = await response.data.data
 
@@ -25,4 +25,12 @@ export async function getHomeList() {
       items: await basicFetch(`seasons/upcoming`),
     },
   ]
+}
+
+export async function getAnimes(search: string, page: number) {
+  const response = await api.get(
+    `anime?q=${search}&order_by=score&page=${page}&limit=20`,
+  )
+
+  return response.data
 }

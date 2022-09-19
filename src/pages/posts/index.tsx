@@ -20,55 +20,59 @@ type Post = {
 }
 
 export default function Posts() {
-  const [posts, setPosts] = useState<Post[]>(null)
+  const [posts, setPosts] = useState<Post[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [page, setPage] = useState(1)
   const [total, setTotal] = useState(1)
 
+  async function getAllPosts() {
+    const perPage = 6
+
+    const response = await prismicClient.getAllByType('post')
+
+    const total = response.length
+    setTotal(total)
+
+    const pageStart = (Number(page) - 1) * Number(perPage)
+    const pageEnd = pageStart + Number(perPage)
+
+    const allPosts = response.map((post) => {
+      return {
+        slug: post.uid,
+        banner: post.data.banner.url,
+        title: prismicH.asText(post.data.title),
+        publicationDate: format(
+          new Date(post.first_publication_date),
+          'dd / MM / yyy',
+        ),
+        content: prismicH.asText(post.data.content),
+        sinopse: prismicH.asText(post.data.sinopse),
+        summary:
+          post.data.sinopse.find((sinopse) => sinopse.type === 'paragraph')
+            ?.text ?? '',
+      }
+    })
+
+    const posts = allPosts.slice(pageStart, pageEnd)
+
+    setPosts(posts)
+
+    setIsLoading(false)
+  }
+
   useEffect(() => {
-    ;(async function () {
-      const perPage = 6
-
-      const response = await prismicClient.getAllByType('post')
-
-      const total = response.length
-      setTotal(total)
-
-      const pageStart = (Number(page) - 1) * Number(perPage)
-      const pageEnd = pageStart + Number(perPage)
-
-      const allPosts = response.map((post) => {
-        return {
-          slug: post.uid,
-          banner: post.data.banner.url,
-          title: prismicH.asText(post.data.title),
-          publicationDate: format(
-            new Date(post.first_publication_date),
-            'dd / MM / yyy',
-          ),
-          content: prismicH.asText(post.data.content),
-          sinopse: prismicH.asText(post.data.sinopse),
-          summary:
-            post.data.sinopse.find((sinopse) => sinopse.type === 'paragraph')
-              ?.text ?? '',
-        }
-      })
-
-      const posts = allPosts.slice(pageStart, pageEnd)
-
-      setPosts(posts)
-
-      setIsLoading(false)
-    })()
+    getAllPosts()
   }, [page])
+
+  if (!posts || isLoading) {
+    return <Spinner />
+  }
 
   return (
     <>
       <Head>
         <title>Anime.List | Blog</title>
       </Head>
-
-      {isLoading && <Spinner />}
 
       <main className={styles.postsCard}>
         {posts?.map((post) => (

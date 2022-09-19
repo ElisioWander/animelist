@@ -1,8 +1,8 @@
-import { getHomeList } from './../services/jikanAPI'
-import { useEffect, useState } from 'react'
+import { getHomeList } from './../hooks/useJikanAPI'
 import { AnimeRow } from '../Components/HomeParts/AnimeRow'
 import { Spinner } from '../Components/Spinner/Index'
 import { FeaturedContainer } from '../Components/HomeParts/FeaturedContainer'
+import { useQuery } from '@tanstack/react-query'
 import Head from 'next/head'
 
 import styles from './home.module.scss'
@@ -25,18 +25,17 @@ type AnimeListData = {
 }
 
 export default function Home() {
-  const [animeList, setAnimeList] = useState<AnimeListData[]>([])
-  const [isLoading, setIsLoading] = useState(true)
+  const { data: animeList, isFetching } = useQuery<AnimeListData[]>(
+    ['HOME_LIST'],
+    getHomeList,
+    {
+      staleTime: 5000 * 60, // 5 minutos
+    },
+  )
 
-  useEffect(() => {
-    ;(async function () {
-      // pegando a lista que contem os dados dos animes
-      const list = await getHomeList()
-
-      setAnimeList(list)
-      setIsLoading(false)
-    })()
-  }, [])
+  if (!animeList || isFetching) {
+    return <Spinner />
+  }
 
   return (
     <>
@@ -45,7 +44,6 @@ export default function Home() {
       </Head>
 
       <div className={styles.homeContainer}>
-        {isLoading && <Spinner />}
         <FeaturedContainer />
 
         <div className={styles.listContainer}>
