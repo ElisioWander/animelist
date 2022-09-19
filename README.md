@@ -21,6 +21,7 @@ Foram utilizadas as seguintes tecnologias para desenvolver a aplicação **Anime
 
 - [Next](https://nextjs.org/)
 - [Typescript](https://www.typescriptlang.org/)
+- [React-Query](https://tanstack.com/query/v4/?from=reactQueryV3&original=https://react-query-v3.tanstack.com/)
 - [Sass](https://sass-lang.com/)
 - [Prismic](https://prismic.io/)
 
