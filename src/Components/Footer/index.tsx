@@ -16,7 +16,7 @@ export function Footer() {
             icon={<FaGithub />}
           />
           <SocialMedia
-            url="https://api.whatsapp.com/send?phone=5532999924818"
+            url="https://api.whatsapp.com/send?phone=5532999847074"
             icon={<FaWhatsapp />}
           />
           <SocialMedia
