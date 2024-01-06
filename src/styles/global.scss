@@ -7,7 +7,6 @@
 
 :focus {
     outline: 0;
-    box-shadow: 0 0 0 2px var(--yellow-100);
 }  
 
 :root {
@@ -53,10 +52,6 @@ body, input, textarea, select {
 
 button {
   cursor: poiter;
-
-  &:focus {
-    box-shadow: 0 0 0 2px var(--yellow-100);
-  }
 }
 
 a {

@@ -33,15 +33,11 @@ export default function AnimeList() {
   const [page, setPage] = useState(1)
 
   const { data: animes, isFetching } = useQuery<AnimesData>(
-    ['ANIMES', page],
+    ['ANIMES', page, search],
     () => getAnimes(search, page),
   )
 
   const totalCount = animes?.pagination.items.total
-
-  function handleGetSearchInputValue(searchInputValue: string) {
-    setSearch(searchInputValue)
-  }
 
   return (
     <>
@@ -53,7 +49,7 @@ export default function AnimeList() {
         <h1>Search Anime</h1>
 
         <SearchBox
-          onGetSearchInputValue={handleGetSearchInputValue}
+          onChange={(query) => setSearch(query)}
           onPageChange={setPage}
         />
 

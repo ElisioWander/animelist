@@ -17,7 +17,9 @@ type FeaturedAnimeData = {
 }
 
 export function FeaturedContainer() {
-  const [featuredAnime, setFeaturedAnime] = useState({} as FeaturedAnimeData)
+  const [featuredAnime, setFeaturedAnime] = useState<FeaturedAnimeData | null>(
+    null,
+  )
 
   useEffect(() => {
     const featuredData = featuredContentInfo.items
